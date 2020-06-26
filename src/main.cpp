@@ -136,6 +136,8 @@ int main()
 	
 	std::vector<Eigen::Vector2f> SSC = ComputeScreenSpaceProjections(vol.raw_data, camera);
 
+	
+
 
 	return 0;
 }

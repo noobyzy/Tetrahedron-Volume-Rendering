@@ -21,7 +21,6 @@ public:
     ~Volume();
     Volume(std::string volumefile);
     bool getRayStartEnd(Ray& ray,float& t_start,float & t_end);
-    void computeGradients();
     MyVertex& indexToData(Eigen::Vector3i index);
 
 };
