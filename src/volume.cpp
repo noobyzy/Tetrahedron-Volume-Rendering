@@ -33,18 +33,104 @@ Volume::Volume(std::string volumefile)
             min_den = std::min(min_den,den);
             max_den = std::max(max_den,den);
             this->raw_data.push_back(MyVertex(this->dx * x_idx, this->dx * y_idx, this->dx * z_idx, den));
+            if(x_idx<this->size.x() && y_idx<this->size.y() && z_idx<this->size.z()){
+                getVoxel(Eigen::Vector3i(x_idx, y_idx, z_idx));
+            }
         }
         printf("density range [%.3f ,%.3f]\n",min_den,max_den);
     }
     fclose(fp);
+    this->computeGradients();
 };
-
 bool Volume::getRayStartEnd(Ray &ray, float &t_start, float &t_end)
 {
     return bbox.rayIntersection(ray, t_start, t_end);
 };
 
-MyVertex& Volume::indexToData(Eigen::Vector3i index)
+int Volume::indexToData(Eigen::Vector3i index)
 {
-    return raw_data[index.z() * size.y() * size.x() + index.y() * size.x() + index.x()];
+    return index.z() * this->size.x() * this->size.y() + index.y() * this->size.x() + index.x();
+}
+void Volume::getVoxel(int x_idx, int y_idx, int z_idx)
+{
+    Eigen::Vector3i base(x_idx, y_idx, z_idx);
+    int v1 = indexToData(Eigen::Vector3i(x_idx, y_idx, z_idx));
+
+    // tetrehedraon 1
+    int v2 = indexToData(base + Eigen::Vector3i(0, 0, 1));
+    int v3 = indexToData(base + Eigen::Vector3i(0, 1, 1));
+    int v4 = indexToData(base + Eigen::Vector3i(1, 0, 1));
+    Tetrahedron tetra1(v1, v2, v3, v4);
+    // pushback
+    tetra_data.push_back(tetra1);
+
+    // tetrehedraon 2
+    v2 = indexToData(base + Eigen::Vector3i(0, 1, 1));
+    v3 = indexToData(base + Eigen::Vector3i(0, 1, 0));
+    v4 = indexToData(base + Eigen::Vector3i(1, 1, 0));
+    Tetrahedron tetra2(v1, v2, v3, v4);
+    // pushback
+    tetra_data.push_back(tetra2);
+
+    // tetrehedraon 3
+    v2 = indexToData(base + Eigen::Vector3i(1, 0, 0));
+    v3 = indexToData(base + Eigen::Vector3i(1, 1, 0));
+    v4 = indexToData(base + Eigen::Vector3i(1, 0, 1));
+    Tetrahedron tetra3(v1, v2, v3, v4);
+    // pushback
+    tetra_data.push_back(tetra3);
+
+    // tetrehedraon 4
+    v2 = indexToData(base + Eigen::Vector3i(1, 1, 0));
+    v3 = indexToData(base + Eigen::Vector3i(0, 1, 1));
+    v4 = indexToData(base + Eigen::Vector3i(1, 0, 1));
+    Tetrahedron tetra4(v1, v2, v3, v4);
+    // pushback
+    tetra_data.push_back(tetra4);
+
+    // tetrehedraon 5
+    v1 = indexToData(base + Eigen::Vector3i(1, 1, 1));
+    v2 = indexToData(base + Eigen::Vector3i(1, 0, 1));
+    v3 = indexToData(base + Eigen::Vector3i(1, 1, 0));
+    v4 = indexToData(base + Eigen::Vector3i(0, 1, 1));
+    Tetrahedron tetra5(v1, v2, v3, v4);
+    // pushback
+    tetra_data.push_back(tetra5);
+
+    return;
+};
+void Volume::computeGradients()
+{
+    this->grad_maxnorm = std::numeric_limits<float>::min();
+    int count=this->raw_data.size();
+    for (int i = 0; i < count; i++)
+    {
+		int z_idx = i / (this->size.y() * this->size.x());
+		int y_idx = (i - z_idx * this->size.x() * this->size.y()) / this->size.x();
+		int x_idx = i - z_idx * this->size.x() * this->size.y() - y_idx * this->size.x();
+			
+
+        float x_grad = 0, y_grad = 0, z_grad = 0;
+        // handle boudary conditions, set boundary's graident as its neighbours' gradient
+        if (z_idx == 0) { z_idx = 1; }
+        if (z_idx == this->size.z() - 1) { z_idx -= 1; }
+        if (y_idx == 0) { y_idx = 1; }
+        if (y_idx == this->size.y() - 1) { y_idx -= 1; }
+        if (x_idx == 0) { x_idx = 1; }
+        if (x_idx == this->size.x() - 1) { x_idx -= 1; }
+
+        // Compute your gradient here
+        x_grad = (indexToData(Eigen::Vector3i(x_idx + 1, y_idx, z_idx)).density - indexToData(Eigen::Vector3i(x_idx - 1, y_idx, z_idx)).density) /
+            (indexToData(Eigen::Vector3i(x_idx + 1, y_idx, z_idx)).position.x() - indexToData(Eigen::Vector3i(x_idx - 1, y_idx, z_idx)).position.x())/2;
+        y_grad = (indexToData(Eigen::Vector3i(x_idx, y_idx + 1, z_idx)).density - indexToData(Eigen::Vector3i(x_idx, y_idx - 1, z_idx)).density) /
+            (indexToData(Eigen::Vector3i(x_idx, y_idx + 1, z_idx)).position.y() - indexToData(Eigen::Vector3i(x_idx, y_idx - 1, z_idx)).position.y())/2;
+        z_grad = (indexToData(Eigen::Vector3i(x_idx, y_idx, z_idx + 1)).density - indexToData(Eigen::Vector3i(x_idx, y_idx, z_idx - 1)).density) /
+            (indexToData(Eigen::Vector3i(x_idx, y_idx, z_idx + 1)).position.z() - indexToData(Eigen::Vector3i(x_idx, y_idx, z_idx - 1)).position.z())/2;
+
+		Eigen::Vector3f grad = Eigen::Vector3f(x_grad, y_grad, z_grad);
+		
+		this->grad_maxnorm = std::max(this->grad_maxnorm,grad.norm());
+        this->raw_data[i].gradient =grad;
+    }
+    printf("max_gradient norm %f \n",grad_maxnorm);
 };
