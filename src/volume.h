@@ -23,5 +23,5 @@ public:
     Volume(std::string volumefile);
     bool getRayStartEnd(Ray& ray,float& t_start,float & t_end);
     int indexToData(Eigen::Vector3i index);
-
+    void getVoxel(int x_idx, int y_idx, int z_idx);
 };
