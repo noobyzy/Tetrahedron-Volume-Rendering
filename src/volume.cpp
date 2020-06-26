@@ -32,7 +32,7 @@ Volume::Volume(std::string volumefile)
             fread(&den, sizeof(float), 1, fp);
             min_den = std::min(min_den,den);
             max_den = std::max(max_den,den);
-            this->raw_data.push_back(volumeData(this->dx * x_idx, this->dx * y_idx, this->dx * z_idx, den));
+            this->raw_data.push_back(MyVertex(this->dx * x_idx, this->dx * y_idx, this->dx * z_idx, den));
         }
         printf("density range [%.3f ,%.3f]\n",min_den,max_den);
     }

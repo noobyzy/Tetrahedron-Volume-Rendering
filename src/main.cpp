@@ -7,6 +7,8 @@
 #include"renderer.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
+#define WIDTH 800
+#define HEIGHT 600
 void renderSingle(){
 	/*
 	 * 1. Volume Setting
@@ -90,12 +92,21 @@ void multipleRender(){
 		renderer.renderFrontToBack(fileout);
 	}
 }
+
+std::vector<Eigen::Vector2f> ComputeScreenSpaceProjections(std::vector<MyVertex> Vertices, Camera camera){
+	std::vector<Eigen::Vector2f> SSC;
+	for(int i=0; i<Vertices.size(); ++i){
+		Ray ray(camera.m_Pos, Vertices[i].coordinate - camera.m_Pos);
+		Eigen::Vector3f p = (1.0f / ray.m_Dir.dot(camera.m_Forward))*ray.m_Dir - camera.m_Forward;
+		SSC.push_back(Eigen::Vector2f(p.dot(camera.m_Right), p.dot(camera.m_Up)));
+	}
+	return SSC;
+}
+
+
 int main()
 {
-	//here you can just render a single frame.
-	renderSingle();
-	// or multiple frames but you need to download data from the link of assignment page, and unzip to proper folder
-	// multipleRender();
+	Intersection_record *PerPixelIntersectionLists[WIDTH][HEIGHT];
 
 
 	return 0;

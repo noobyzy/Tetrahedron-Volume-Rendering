@@ -8,8 +8,9 @@
 #include "volumeData.h"
 #include "voxel.h"
 #include "ray.hpp"
+#include "tetra.h"
 class Volume{
-    std::vector<volumeData> raw_data;
+    std::vector<MyVertex> raw_data;
 public:
     Eigen::Vector3i size;Eigen::Vector3f size_physics;
     AABB bbox ;

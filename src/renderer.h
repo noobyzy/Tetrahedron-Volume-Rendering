@@ -7,6 +7,7 @@
 #include "camera.hpp"
 #include "light.hpp"
 #include "classifier.h"
+#include "tetra.h"
 #include <iostream>
 #include <omp.h>
 class Renderer{
