@@ -13,6 +13,7 @@ class Volume{
     
 public:
     std::vector<MyVertex> raw_data;
+    std::vector<Tetrahedron> tetra_data;
     Eigen::Vector3i size;Eigen::Vector3f size_physics;
     AABB bbox ;
     double dx;
@@ -21,6 +22,6 @@ public:
     ~Volume();
     Volume(std::string volumefile);
     bool getRayStartEnd(Ray& ray,float& t_start,float & t_end);
-    MyVertex& indexToData(Eigen::Vector3i index);
+    int indexToData(Eigen::Vector3i index);
 
 };
