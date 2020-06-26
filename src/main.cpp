@@ -106,8 +106,9 @@ std::vector<Eigen::Vector2f> ComputeScreenSpaceProjections(std::vector<MyVertex>
 
 int main()
 {
-	Intersection_record *PerPixelIntersectionLists[WIDTH][HEIGHT];
-
+	std::vector<int> PerPixelIntersectionLists[WIDTH][HEIGHT];
+	PerPixelIntersectionLists[4][4].push_back(3);
+	
 
 	return 0;
 }
