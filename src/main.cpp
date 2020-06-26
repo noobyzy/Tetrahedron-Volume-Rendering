@@ -1,14 +1,15 @@
 ﻿
 #include <iostream>
 #include <algorithm>
+#include <tetra.h>
 
 
 
 #include"renderer.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
-#define WIDTH 800
-#define HEIGHT 600
+#define WIDTH 1024
+#define HEIGHT 1024
 void renderSingle(){
 	/*
 	 * 1. Volume Setting
@@ -103,12 +104,38 @@ std::vector<Eigen::Vector2f> ComputeScreenSpaceProjections(std::vector<MyVertex>
 	return SSC;
 }
 
+void ExtractIntersectionRecords(std::vector<Tetrahedron> tetra_list, std::vector<MyVertex> vertex_list, std::vector<Eigen::Vector2f> SSC, std::vector<std::vector<std::vector<int>>>& PerPixelIntersectionList){
+
+}
+
 
 int main()
 {
-	std::vector<int> PerPixelIntersectionLists[WIDTH][HEIGHT];
-	PerPixelIntersectionLists[4][4].push_back(3);
+	/*
+	 * 1. Volume Setting
+	 */
 	
+	Volume vol("data/test2.bin");
+	/*
+	 * 2. Camera Setting
+	 */
+	Eigen::Vector3f cameraPosition= vol.bbox.getCenter()-2.5*Eigen::Vector3f(0,0,vol.size_physics.z());
+	Eigen::Vector3f cameraLookAt= vol.bbox.getCenter();
+	Eigen::Vector3f cameraUp(0, 1, 0);
+	float verticalFov = 45;
+	Eigen::Vector2i filmRes(1024, 1024);
+
+	Camera camera(cameraPosition, cameraLookAt, cameraUp, verticalFov, filmRes);
+	PointLight light(cameraPosition+Eigen::Vector3f(0,5,0),Eigen::Vector3f(1,1,1));
+
+
+	/*******************************************************************************************************/
+
+
+	std::vector<std::vector<std::vector<int>>> PerPixelIntersectionList;
+	
+	std::vector<Eigen::Vector2f> SSC = ComputeScreenSpaceProjections(vol.raw_data, camera);
+
 
 	return 0;
 }
