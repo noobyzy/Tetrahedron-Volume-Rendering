@@ -40,6 +40,7 @@ class Intersection_record{
 };
 
 class Intersection_effect{
+    public:
     float dist; // the eye distance to the first tetrahedron
     Eigen::Vector3f color;
     float opacity;
