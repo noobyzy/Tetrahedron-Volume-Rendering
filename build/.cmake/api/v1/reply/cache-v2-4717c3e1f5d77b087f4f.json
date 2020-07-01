@@ -1331,7 +1331,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[TRUE][TRUE][c ][v4.5()]"
+			"value" : "[TRUE][TRUE][c ][v()]"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_C",
@@ -1343,7 +1343,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[-fopenmp][D:/MinGW/lib/gcc/x86_64-w64-mingw32/8.1.0/libgomp.dll.a][D:/MinGW/x86_64-w64-mingw32/lib/libmingwthrd.a][D:/MinGW/x86_64-w64-mingw32/lib/libmingwthrd.a][v4.5()]"
+			"value" : "[-fopenmp][D:/MinGW/lib/gcc/x86_64-w64-mingw32/8.1.0/libgomp.dll.a][D:/MinGW/x86_64-w64-mingw32/lib/libmingwthrd.a][D:/MinGW/x86_64-w64-mingw32/lib/libmingwthrd.a][v()]"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX",
@@ -1355,7 +1355,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[-fopenmp][D:/MinGW/lib/gcc/x86_64-w64-mingw32/8.1.0/libgomp.dll.a][D:/MinGW/x86_64-w64-mingw32/lib/libmingwthrd.a][D:/MinGW/x86_64-w64-mingw32/lib/libmingwthrd.a][v4.5()]"
+			"value" : "[-fopenmp][D:/MinGW/lib/gcc/x86_64-w64-mingw32/8.1.0/libgomp.dll.a][D:/MinGW/x86_64-w64-mingw32/lib/libmingwthrd.a][D:/MinGW/x86_64-w64-mingw32/lib/libmingwthrd.a][v()]"
 		},
 		{
 			"name" : "OpenMP_COMPILE_RESULT_CXX_fopenmp",
