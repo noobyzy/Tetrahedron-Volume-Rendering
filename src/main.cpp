@@ -38,7 +38,7 @@ std::vector<Eigen::Vector2f> ComputeScreenSpaceProjections(std::vector<MyVertex>
 	for(int i=0; i<Vertices.size(); ++i){
 		Ray ray(camera.m_Pos, Vertices[i].coordinate - camera.m_Pos);
 		Eigen::Vector3f p = (1.0f / ray.m_Dir.dot(camera.m_Forward))*ray.m_Dir - camera.m_Forward;
-		SSC.push_back(Eigen::Vector2f(p.dot(camera.m_Right), p.dot(camera.m_Up)));
+		SSC.push_back(Eigen::Vector2f(p.dot(camera.m_Right) + camera.m_Film.m_Res.x()/2.0f, p.dot(camera.m_Up) + camera.m_Film.m_Res.y()/2.0f));
 	}
 	return SSC;
 }
