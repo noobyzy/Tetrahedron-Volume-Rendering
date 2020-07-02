@@ -2,14 +2,14 @@
 #include "volume.h"
 #include "opticsData.h"
 #include "compositor.h"
-#include "interpolator.h"
+// #include "interpolator.h"
 #include "classifier.h"
 #include "camera.hpp"
 #include "light.hpp"
 #include "classifier.h"
 #include "tetra.h"
 #include <iostream>
-#include <omp.h>
+// #include <omp.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
@@ -77,12 +77,14 @@ float cross_product(Eigen::Vector2f v1, Eigen::Vector2f v2){
 void ExtractIntersectionRecords(std::vector<Tetrahedron> tetra_list, std::vector<MyVertex> vertex_list, std::vector<Eigen::Vector2f> SSC, std::vector<std::vector<std::vector<int>>>& PerPixelIntersectionList){
 	// iterate each tetrahedron
 	for(int i = 0; i < tetra_list.size(); i++){
-		
+		std::cout << "hello1" << std::endl;
 		/* the four projected points on screen */
 		Eigen::Vector2f v1_proj = SSC[tetra_list[i].v1_idx];
 		Eigen::Vector2f v2_proj = SSC[tetra_list[i].v2_idx];
 		Eigen::Vector2f v3_proj = SSC[tetra_list[i].v3_idx];
 		Eigen::Vector2f v4_proj = SSC[tetra_list[i].v4_idx];
+		std::cout << "hello2" << std::endl;
+
 
 		/* lower bound and upper bound of x and y */
 		int xlb = std::max((int)std::floor(MIN4(v1_proj.x(), v2_proj.x(), v3_proj.x(), v4_proj.x())), 0);
