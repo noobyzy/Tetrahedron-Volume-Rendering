@@ -1153,32 +1153,8 @@ Eigen/Dense
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/Eigen/Dense
 
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp
-iostream
--
 algorithm
 -
-renderer.h
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/renderer.h
-stb_image_write.h
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/stb_image_write.h
-
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.h
-vector
--
-string
--
-Eigen/Dense
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/Eigen/Dense
-light.hpp
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/light.hpp
-iostream
--
-
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/renderer.cpp
-renderer.h
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/renderer.h
-
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/renderer.h
 volume.h
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.h
 opticsData.h
@@ -1201,6 +1177,20 @@ iostream
 -
 omp.h
 -
+stb_image_write.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/stb_image_write.h
+
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.h
+vector
+-
+string
+-
+Eigen/Dense
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/Eigen/Dense
+light.hpp
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/light.hpp
+iostream
+-
 
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/tetra.h
 vector
@@ -1221,10 +1211,6 @@ voxel.h
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/voxel.h
 ray.hpp
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/ray.hpp
-
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.cpp
-volume.h
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.h
 
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.h
 vector
