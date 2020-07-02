@@ -32,14 +32,13 @@ int intersect_triangle(Eigen::Vector3f & ip,
 						Ray ray);
 
 /* project vertices in 3D to screen space in 2d */
-std::vector<Eigen::Vector2f> ComputeScreenSpaceProjections(std::vector<MyVertex> Vertices, Camera camera){
-	std::vector<Eigen::Vector2f> SSC;
-	for(int i=0; i<Vertices.size(); ++i){
-		Ray ray(camera.m_Pos, Vertices[i].coordinate - camera.m_Pos);
-		Eigen::Vector3f p = (1.0f / ray.m_Dir.dot(camera.m_Forward))*ray.m_Dir - camera.m_Forward;
-		SSC.push_back(Eigen::Vector2f(p.dot(camera.m_Right) + camera.m_Film.m_Res.x()/2.0f, p.dot(camera.m_Up) + camera.m_Film.m_Res.y()/2.0f));
+void ComputeScreenSpaceProjections(std::vector<Eigen::Vector2f> & SSC,
+									std::vector<MyVertex> *Vertices, Camera *camera){
+	for(int i=0; i<Vertices->size(); ++i){
+		Ray ray(camera->m_Pos, Vertices->at(i).coordinate - camera->m_Pos);
+		Eigen::Vector3f p = (1.0f / ray.m_Dir.dot(camera->m_Forward))*ray.m_Dir - camera->m_Forward;
+		SSC.push_back(Eigen::Vector2f(p.dot(camera->m_Right) + camera->m_Film.m_Res.x()/2.0f, p.dot(camera->m_Up) + camera->m_Film.m_Res.y()/2.0f));
 	}
-	return SSC;
 }
 
 /* test the side of the point */
@@ -385,7 +384,8 @@ int main()
 		PerPixelIntersectionList[i].resize(HEIGHT);
 	}
 	
-	std::vector<Eigen::Vector2f> SSC = ComputeScreenSpaceProjections(vol.raw_data, camera);
+	std::vector<Eigen::Vector2f> SSC;
+	ComputeScreenSpaceProjections(SSC, &vertex_list, &camera);
 		
 	ExtractIntersectionRecords(&tetra_list, &SSC, PerPixelIntersectionList);
 
