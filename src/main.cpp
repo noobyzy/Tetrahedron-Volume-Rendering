@@ -330,8 +330,8 @@ float InterpolateScalar(Tetrahedron t, Eigen::Vector3f p,
 }
 
 Eigen::Vector3f ComposeIntersectionEffects(std::vector<Intersection_effect> *list) {
-	Eigen::Vector3f c_color;
-	float c_opacity;
+	Eigen::Vector3f c_color = Eigen::Vector3f(0.0f, 0.0f, 0.0f);
+	float c_opacity = 0.0f;
 	for (int i = 0; i < (*list).size(); i++) {
 		Eigen::Vector3f r_color = (*list)[i].color;
 		float r_opacity = (*list)[i].opacity;
@@ -390,7 +390,7 @@ int main()
 		for(int j = 0; j < camera.m_Film.m_Res.y(); j++){
 			std::vector<int> list = PerPixelIntersectionList[i][j];
 			std::vector<Intersection_effect> IntEffectList;
-			CalculateIntersectionEffect(list);
+			CalculateIntersectionEffect(IntEffectList, &camera, Eigen::Vector2i(i, j), &list, &tetra_list, &vertex_list, 3);
 			std::sort(IntEffectList.begin(), IntEffectList.end(), SortFunc);
 			Eigen::Vector3f color_c = ComposeIntersectionEffects(&IntEffectList);
 			camera.setPixel(i, j, color_c);
