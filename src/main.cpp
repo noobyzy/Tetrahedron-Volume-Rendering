@@ -392,8 +392,10 @@ int main()
 			std::vector<Intersection_effect> IntEffectList;
 			CalculateIntersectionEffect(list);
 			std::sort(IntEffectList.begin(), IntEffectList.end(), SortFunc);
-			
+			Eigen::Vector3f color_c = ComposeIntersectionEffects(&IntEffectList);
+			camera.setPixel(i, j, color_c);
 		}
 	}
+	camera.m_Film.write("./tetra_vol.png");
 	return 0;
 }
