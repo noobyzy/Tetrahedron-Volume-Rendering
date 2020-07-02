@@ -344,6 +344,10 @@ Eigen::Vector3f ComposeIntersectionEffects(std::vector<Intersection_effect> *lis
 	return c_color;
 }
 
+bool SortFunc(const Intersection_effect ef_a, const Intersection_effect ef_b){
+	return ef_a.dist < ef_b.dist;
+}
+
 
 int main()
 {
@@ -382,5 +386,14 @@ int main()
 	
 	ExtractIntersectionRecords(tetra_list, vertex_list, SSC, PerPixelIntersectionList);
 
+	for (int i = 0; i < camera.m_Film.m_Res.x(); i++){
+		for(int j = 0; j < camera.m_Film.m_Res.y(); j++){
+			std::vector<int> list = PerPixelIntersectionList[i][j];
+			std::vector<Intersection_effect> IntEffectList;
+			CalculateIntersectionEffect(list);
+			std::sort(IntEffectList.begin(), IntEffectList.end(), SortFunc);
+			
+		}
+	}
 	return 0;
 }
