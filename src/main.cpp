@@ -371,9 +371,9 @@ float InterpolateScalar(Tetrahedron t, Eigen::Vector3f p,
 Eigen::Vector3f ComposeIntersectionEffects(std::vector<Intersection_effect> *list) {
 	Eigen::Vector3f c_color = Eigen::Vector3f(0.0f, 0.0f, 0.0f);
 	float c_opacity = 0.0f;
-	for (int i = 0; i < (*list).size(); i++) {
-		Eigen::Vector3f r_color = (*list)[i].color;
-		float r_opacity = (*list)[i].opacity;
+	for (int i = 0; i < list->size(); i++) {
+		Eigen::Vector3f r_color = list->at(i).color;
+		float r_opacity = list->at(i).opacity;
 		c_color += (1 - c_opacity) * r_color;
 		c_opacity += (1 - c_opacity) * r_opacity;
 		if (c_opacity >= 0.9999f) {
