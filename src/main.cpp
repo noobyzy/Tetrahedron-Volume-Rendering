@@ -37,7 +37,8 @@ void ComputeScreenSpaceProjections(std::vector<Eigen::Vector2f> & SSC,
 	for(int i=0; i<Vertices->size(); ++i){
 		Ray ray(camera->m_Pos, Vertices->at(i).coordinate - camera->m_Pos);
 		Eigen::Vector3f p = (1.0f / ray.m_Dir.dot(camera->m_Forward))*ray.m_Dir - camera->m_Forward;
-		SSC.push_back(Eigen::Vector2f(p.dot(camera->m_Right) + camera->m_Film.m_Res.x()/2.0f, p.dot(camera->m_Up) + camera->m_Film.m_Res.y()/2.0f));
+		SSC.push_back(Eigen::Vector2f(p.dot(camera->m_Right)/camera->m_Right.squaredNorm() * camera->m_Film.m_Res.x()/2.0f,
+									  p.dot(camera->m_Up)/camera->m_Up.squaredNorm() * camera->m_Film.m_Res.y()/2.0f));
 	}
 }
 
@@ -74,7 +75,7 @@ float cross_product(Eigen::Vector2f v1, Eigen::Vector2f v2){
 /* get the projection of each tetrahedron, get the piexl projected by the tetrahedron, build a intersection list for each pixel */
 void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vector<Eigen::Vector2f>* SSC, std::vector<std::vector<std::vector<int>>>& PerPixelIntersectionList){
 	// iterate each tetrahedron
-	for(int i = 0; i < (*tetra_list).size(); i++){
+	for(int i = 0; i < tetra_list->size(); i++){
 		
 		/* the four projected points on screen */
 		Eigen::Vector2f v1_proj = SSC->at(tetra_list->at(i).v1_idx);
@@ -293,7 +294,7 @@ int intersect_triangle(Eigen::Vector3f & ip,
 	float u = E2.dot(DAO) * invdet;
 	float v = -E1.dot(DAO) * invdet;
 	float t = A0.dot(N) * invdet;
-	if(det>=ray.m_fMin && t>= 0.0 && u>=0.0 && v>=0.0 && (u+v)<=0.0){
+	if(det>=ray.m_fMin && t>= 0.0 && u>=0.0 && v>=0.0 && (u+v)<=1.0){
 		ip = A + u*E1 + v*E2;
 		return 1;
 	}
@@ -385,6 +386,7 @@ int main()
 	}
 	
 	std::vector<Eigen::Vector2f> SSC;
+	SSC.reserve(vertex_list.size());
 	ComputeScreenSpaceProjections(SSC, &vertex_list, &camera);
 		
 	ExtractIntersectionRecords(&tetra_list, &SSC, PerPixelIntersectionList);
