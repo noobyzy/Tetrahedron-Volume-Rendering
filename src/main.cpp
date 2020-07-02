@@ -344,7 +344,7 @@ Eigen::Vector3f ComposeIntersectionEffects(std::vector<Intersection_effect> *lis
 	return c_color;
 }
 
-bool SortFunc(const Intersection_effect ef_a, const Intersection_effect ef_b){
+bool SortFunc(const Intersection_effect& ef_a, const Intersection_effect& ef_b){
 	return ef_a.dist < ef_b.dist;
 }
 
