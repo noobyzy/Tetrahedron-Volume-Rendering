@@ -221,33 +221,6 @@ src/opticsData.cpp.s:
 	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/opticsData.cpp.s
 .PHONY : src/opticsData.cpp.s
 
-src/renderer.obj: src/renderer.cpp.obj
-
-.PHONY : src/renderer.obj
-
-# target to build an object file
-src/renderer.cpp.obj:
-	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/renderer.cpp.obj
-.PHONY : src/renderer.cpp.obj
-
-src/renderer.i: src/renderer.cpp.i
-
-.PHONY : src/renderer.i
-
-# target to preprocess a source file
-src/renderer.cpp.i:
-	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/renderer.cpp.i
-.PHONY : src/renderer.cpp.i
-
-src/renderer.s: src/renderer.cpp.s
-
-.PHONY : src/renderer.s
-
-# target to generate assembly for a file
-src/renderer.cpp.s:
-	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/renderer.cpp.s
-.PHONY : src/renderer.cpp.s
-
 src/volume.obj: src/volume.cpp.obj
 
 .PHONY : src/volume.obj
@@ -293,9 +266,6 @@ help:
 	@echo "... src/opticsData.obj"
 	@echo "... src/opticsData.i"
 	@echo "... src/opticsData.s"
-	@echo "... src/renderer.obj"
-	@echo "... src/renderer.i"
-	@echo "... src/renderer.s"
 	@echo "... src/volume.obj"
 	@echo "... src/volume.i"
 	@echo "... src/volume.s"

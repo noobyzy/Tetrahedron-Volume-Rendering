@@ -2,7 +2,6 @@
 #include "volume.h"
 #include "opticsData.h"
 #include "compositor.h"
-#include "interpolator.h"
 #include "classifier.h"
 #include "camera.hpp"
 #include "light.hpp"
@@ -74,15 +73,15 @@ float cross_product(Eigen::Vector2f v1, Eigen::Vector2f v2){
 }
 
 /* get the projection of each tetrahedron, get the piexl projected by the tetrahedron, build a intersection list for each pixel */
-void ExtractIntersectionRecords(std::vector<Tetrahedron> tetra_list, std::vector<MyVertex> vertex_list, std::vector<Eigen::Vector2f> SSC, std::vector<std::vector<std::vector<int>>>& PerPixelIntersectionList){
+void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vector<Eigen::Vector2f>* SSC, std::vector<std::vector<std::vector<int>>>& PerPixelIntersectionList){
 	// iterate each tetrahedron
-	for(int i = 0; i < tetra_list.size(); i++){
+	for(int i = 0; i < (*tetra_list).size(); i++){
 		
 		/* the four projected points on screen */
-		Eigen::Vector2f v1_proj = SSC[tetra_list[i].v1_idx];
-		Eigen::Vector2f v2_proj = SSC[tetra_list[i].v2_idx];
-		Eigen::Vector2f v3_proj = SSC[tetra_list[i].v3_idx];
-		Eigen::Vector2f v4_proj = SSC[tetra_list[i].v4_idx];
+		Eigen::Vector2f v1_proj = SSC->at(tetra_list->at(i).v1_idx);
+		Eigen::Vector2f v2_proj = SSC->at(tetra_list->at(i).v2_idx);
+		Eigen::Vector2f v3_proj = SSC->at(tetra_list->at(i).v3_idx);
+		Eigen::Vector2f v4_proj = SSC->at(tetra_list->at(i).v4_idx);
 
 		/* lower bound and upper bound of x and y */
 		int xlb = std::max((int)std::floor(MIN4(v1_proj.x(), v2_proj.x(), v3_proj.x(), v4_proj.x())), 0);
@@ -378,6 +377,7 @@ int main()
 	y is the pixel in heigtht
 	z is a vector of int, storing the index of tetrahedron projected above the pixel
 	*/
+
 	std::vector<std::vector<std::vector<int>>> PerPixelIntersectionList;
 	//initialize the 3d vector
 	PerPixelIntersectionList.resize(WIDTH);
@@ -386,8 +386,8 @@ int main()
 	}
 	
 	std::vector<Eigen::Vector2f> SSC = ComputeScreenSpaceProjections(vol.raw_data, camera);
-	
-	ExtractIntersectionRecords(tetra_list, vertex_list, SSC, PerPixelIntersectionList);
+		
+	ExtractIntersectionRecords(&tetra_list, &SSC, PerPixelIntersectionList);
 
 	for (int i = 0; i < camera.m_Film.m_Res.x(); i++){
 		for(int j = 0; j < camera.m_Film.m_Res.y(); j++){

@@ -1,27 +1,22 @@
 [
 {
   "directory": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build",
-  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -g   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/compositor.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.cpp",
+  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/compositor.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.cpp",
   "file": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.cpp"
 },
 {
   "directory": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build",
-  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -g   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/main.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp",
+  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/main.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp",
   "file": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp"
 },
 {
   "directory": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build",
-  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -g   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/opticsData.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.cpp",
+  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/opticsData.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.cpp",
   "file": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.cpp"
 },
 {
   "directory": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build",
-  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -g   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/renderer.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/renderer.cpp",
-  "file": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/renderer.cpp"
-},
-{
-  "directory": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build",
-  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -g   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/volume.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.cpp",
+  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/volume.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.cpp",
   "file": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.cpp"
 }
 ]

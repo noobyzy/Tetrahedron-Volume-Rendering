@@ -2,7 +2,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/volume_rendering.dir/src/compositor.cpp.obj"
   "CMakeFiles/volume_rendering.dir/src/main.cpp.obj"
   "CMakeFiles/volume_rendering.dir/src/opticsData.cpp.obj"
-  "CMakeFiles/volume_rendering.dir/src/renderer.cpp.obj"
   "CMakeFiles/volume_rendering.dir/src/volume.cpp.obj"
   "libvolume_rendering.dll.a"
   "volume_rendering.exe"

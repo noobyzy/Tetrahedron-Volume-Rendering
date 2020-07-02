@@ -429,7 +429,6 @@ CMakeFiles/volume_rendering.dir/src/main.cpp.obj
  ../include/tinycolormap.hpp
  D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/classifier.h
  D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.h
- D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/interpolator.h
  D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp
  D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.h
  D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/tetra.h
@@ -649,7 +648,6 @@ CMakeFiles/volume_rendering.dir/src/opticsData.cpp.obj
  ../include/Eigen/src/plugins/MatrixCwiseUnaryOps.h
  D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.cpp
  D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.h
-CMakeFiles/volume_rendering.dir/src/renderer.cpp.obj
 CMakeFiles/volume_rendering.dir/src/volume.cpp.obj
  ../head/aabb.hpp
  ../head/ray.hpp

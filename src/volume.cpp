@@ -15,11 +15,11 @@ Volume::Volume(std::string volumefile, std::vector<Tetrahedron> & tetra_data, st
     FILE *fp = fopen(volumefile.c_str(), "rb");
     if (fp)
     {    
-            fread(this->size.data(),sizeof(int),3,fp);
-            fread(this->size_physics.data(),sizeof(float),3,fp);
-    this->bbox = AABB(0, 0, 0, size_physics.x(), size_physics.y(), size_physics.z());
-    this->dx = size_physics.x() / (this->size.x()-1);
-    int count = this->size.x() * this->size.y() * this->size.z();
+        fread(this->size.data(),sizeof(int),3,fp);
+        fread(this->size_physics.data(),sizeof(float),3,fp);
+        this->bbox = AABB(0, 0, 0, size_physics.x(), size_physics.y(), size_physics.z());
+        this->dx = size_physics.x() / (this->size.x()-1);
+        int count = this->size.x() * this->size.y() * this->size.z();
         // this->raw_data.clear();
         float den = 0;
         float min_den = 9999;

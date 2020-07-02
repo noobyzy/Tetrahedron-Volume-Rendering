@@ -1146,12 +1146,6 @@ D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.h
 Eigen/Dense
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/Eigen/Dense
 
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/interpolator.h
-volumeData.h
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volumeData.h
-Eigen/Dense
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/Eigen/Dense
-
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp
 algorithm
 -
@@ -1161,8 +1155,6 @@ opticsData.h
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.h
 compositor.h
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.h
-interpolator.h
-D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/interpolator.h
 classifier.h
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/classifier.h
 camera.hpp
