@@ -77,7 +77,7 @@ float cross_product(Eigen::Vector2f v1, Eigen::Vector2f v2){
 void ExtractIntersectionRecords(std::vector<Tetrahedron> tetra_list, std::vector<MyVertex> vertex_list, std::vector<Eigen::Vector2f> SSC, std::vector<std::vector<std::vector<int>>>& PerPixelIntersectionList){
 	// iterate each tetrahedron
 	for(int i = 0; i < tetra_list.size(); i++){
-		std::cout << "hello1" << std::endl;
+		std::cout << "hello1  " << tetra_list.size() << "     "<< SSC.size()  << "   " << vertex_list.size() << std::endl;
 		/* the four projected points on screen */
 		Eigen::Vector2f v1_proj = SSC[tetra_list[i].v1_idx];
 		Eigen::Vector2f v2_proj = SSC[tetra_list[i].v2_idx];
