@@ -34,11 +34,37 @@ int intersect_triangle(Eigen::Vector3f & ip,
 /* project vertices in 3D to screen space in 2d */
 void ComputeScreenSpaceProjections(std::vector<Eigen::Vector2f> & SSC,
 									std::vector<MyVertex> *Vertices, Camera *camera){
+	float xmin = 12345.0f;
+	float ymin = 12345.0f;
+	float zmin = 12345.0f;
+	float xmax = 0.0f;
+	float ymax = 0.0f;
+	float zmax = 0.0f;
+
+
 	for(int i=0; i<Vertices->size(); ++i){
+		if(Vertices->at(i).coordinate.x() < xmin) xmin = Vertices->at(i).coordinate.x();
+		if(Vertices->at(i).coordinate.y() < ymin) ymin = Vertices->at(i).coordinate.y();
+		if(Vertices->at(i).coordinate.z() < zmin) zmin = Vertices->at(i).coordinate.z();
+		if(Vertices->at(i).coordinate.x() > xmax) xmax = Vertices->at(i).coordinate.x();
+		if(Vertices->at(i).coordinate.y() > ymax) ymax = Vertices->at(i).coordinate.y();
+		if(Vertices->at(i).coordinate.z() > zmax) zmax = Vertices->at(i).coordinate.z();
+
+
+
 		Ray ray(camera->m_Pos, Vertices->at(i).coordinate - camera->m_Pos);
 		Eigen::Vector3f p = (1.0f / ray.m_Dir.dot(camera->m_Forward))*ray.m_Dir - camera->m_Forward;
 		SSC.push_back(Eigen::Vector2f(p.dot(camera->m_Right) + camera->m_Film.m_Res.x()/2.0f, p.dot(camera->m_Up) + camera->m_Film.m_Res.y()/2.0f));
 	}
+	std::cout<<"xmin="<<xmin<<std::endl;
+	std::cout<<"ymin="<<ymin<<std::endl;
+	std::cout<<"zmin="<<zmin<<std::endl;
+	std::cout<<"xmax="<<xmax<<std::endl;
+	std::cout<<"ymax="<<ymax<<std::endl;
+	std::cout<<"zmax="<<zmax<<std::endl;
+
+
+
 }
 
 /* test the side of the point */
@@ -73,8 +99,12 @@ float cross_product(Eigen::Vector2f v1, Eigen::Vector2f v2){
 
 /* get the projection of each tetrahedron, get the piexl projected by the tetrahedron, build a intersection list for each pixel */
 void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vector<Eigen::Vector2f>* SSC, std::vector<std::vector<std::vector<int>>>& PerPixelIntersectionList){
+	int xmin = 1023;
+	int ymin = 1023;
+	int xmax = 0;
+	int ymax = 0;
 	// iterate each tetrahedron
-	for(int i = 0; i < (*tetra_list).size(); i++){
+	for(int i = 0; i < tetra_list->size(); i++){
 		
 		/* the four projected points on screen */
 		Eigen::Vector2f v1_proj = SSC->at(tetra_list->at(i).v1_idx);
@@ -89,6 +119,11 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 		int xub = std::min((int)std::ceil(MAX4(v1_proj.x(), v2_proj.x(), v3_proj.x(), v4_proj.x())), 1023);
 		int yub = std::min((int)std::ceil(MAX4(v1_proj.y(), v2_proj.y(), v3_proj.y(), v4_proj.y())), 1023);
 
+		if(xlb<xmin) xmin = xlb;
+		if(ylb<ymin) ymin = ylb;
+		if(xub>xmax) xmax = xub;
+		if(yub>ymax) ymax = yub;
+		
 
 		if(is_inside_triangle(v1_proj, v2_proj, v3_proj, v4_proj) || is_inside_triangle(v1_proj, v2_proj, v4_proj, v3_proj) || is_inside_triangle(v1_proj, v3_proj, v4_proj, v2_proj) || is_inside_triangle(v2_proj, v3_proj, v4_proj, v1_proj)){
 			/* at least one vertex is inside the triangle consist of other 3 vertices*/
@@ -208,6 +243,11 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 			}
 		}
 	}
+	std::cout<<"xmin="<<xmin<<std::endl;
+	std::cout<<"ymin="<<ymin<<std::endl;
+	std::cout<<"xmax="<<xmax<<std::endl;
+	std::cout<<"ymax="<<ymax<<std::endl;
+
 }
 
 void CalculateIntersectionEffect(std::vector<Intersection_effect> & effectlist_for_this_pixel /* filled in this function */, 
@@ -356,10 +396,12 @@ int main()
 	 * 1. Volume Setting
 	 */
 	
+	
 	Volume vol("data/test2.bin", tetra_list, vertex_list);
 	/*
 	 * 2. Camera Setting
 	 */
+	
 	Eigen::Vector3f cameraPosition= vol.bbox.getCenter()-2.5*Eigen::Vector3f(0,0,vol.size_physics.z());
 	Eigen::Vector3f cameraLookAt= vol.bbox.getCenter();
 	Eigen::Vector3f cameraUp(0, 1, 0);
@@ -385,13 +427,16 @@ int main()
 	}
 	
 	std::vector<Eigen::Vector2f> SSC;
+	
 	ComputeScreenSpaceProjections(SSC, &vertex_list, &camera);
-		
+	
 	ExtractIntersectionRecords(&tetra_list, &SSC, PerPixelIntersectionList);
+	
 
 	for (int i = 0; i < camera.m_Film.m_Res.x(); i++){
 		for(int j = 0; j < camera.m_Film.m_Res.y(); j++){
 			std::vector<int> list = PerPixelIntersectionList[i][j];
+			
 			std::vector<Intersection_effect> IntEffectList;
 			CalculateIntersectionEffect(IntEffectList, &camera, Eigen::Vector2i(i, j), &list, &tetra_list, &vertex_list, 3);
 			std::sort(IntEffectList.begin(), IntEffectList.end(), SortFunc);
