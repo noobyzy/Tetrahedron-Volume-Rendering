@@ -54,7 +54,8 @@ void ComputeScreenSpaceProjections(std::vector<Eigen::Vector2f> & SSC,
 
 		Ray ray(camera->m_Pos, Vertices->at(i).coordinate - camera->m_Pos);
 		Eigen::Vector3f p = (1.0f / ray.m_Dir.dot(camera->m_Forward))*ray.m_Dir - camera->m_Forward;
-		SSC.push_back(Eigen::Vector2f(p.dot(camera->m_Right) + camera->m_Film.m_Res.x()/2.0f, p.dot(camera->m_Up) + camera->m_Film.m_Res.y()/2.0f));
+		SSC.push_back(Eigen::Vector2f(p.dot(camera->m_Right)/camera->m_Right.squaredNorm() * camera->m_Film.m_Res.x()/2.0f,
+									  p.dot(camera->m_Up)/camera->m_Up.squaredNorm() * camera->m_Film.m_Res.y()/2.0f));
 	}
 	std::cout<<"xmin="<<xmin<<std::endl;
 	std::cout<<"ymin="<<ymin<<std::endl;
@@ -333,7 +334,7 @@ int intersect_triangle(Eigen::Vector3f & ip,
 	float u = E2.dot(DAO) * invdet;
 	float v = -E1.dot(DAO) * invdet;
 	float t = A0.dot(N) * invdet;
-	if(det>=ray.m_fMin && t>= 0.0 && u>=0.0 && v>=0.0 && (u+v)<=0.0){
+	if(det>=ray.m_fMin && t>= 0.0 && u>=0.0 && v>=0.0 && (u+v)<=1.0){
 		ip = A + u*E1 + v*E2;
 		return 1;
 	}
@@ -427,7 +428,7 @@ int main()
 	}
 	
 	std::vector<Eigen::Vector2f> SSC;
-	
+	SSC.reserve(vertex_list.size());
 	ComputeScreenSpaceProjections(SSC, &vertex_list, &camera);
 	
 	ExtractIntersectionRecords(&tetra_list, &SSC, PerPixelIntersectionList);
