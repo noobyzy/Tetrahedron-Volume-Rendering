@@ -10,7 +10,7 @@ void SwapEnd(T &var)
 Volume::Volume(){};
 Volume::~Volume(){};
 
-Volume::Volume(std::string volumefile)
+Volume::Volume(std::string volumefile, std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & vertex_list)
 {
     FILE *fp = fopen(volumefile.c_str(), "rb");
     if (fp)
@@ -20,7 +20,7 @@ Volume::Volume(std::string volumefile)
     this->bbox = AABB(0, 0, 0, size_physics.x(), size_physics.y(), size_physics.z());
     this->dx = size_physics.x() / (this->size.x()-1);
     int count = this->size.x() * this->size.y() * this->size.z();
-        this->raw_data.clear();
+        // this->raw_data.clear();
         float den = 0;
         float min_den = 9999;
         float max_den = -9999;
@@ -32,9 +32,9 @@ Volume::Volume(std::string volumefile)
             fread(&den, sizeof(float), 1, fp);
             min_den = std::min(min_den,den);
             max_den = std::max(max_den,den);
-            this->raw_data.push_back(MyVertex(this->dx * x_idx, this->dx * y_idx, this->dx * z_idx, den));
+            vertex_list.push_back(MyVertex(this->dx * x_idx, this->dx * y_idx, this->dx * z_idx, den));
             if(x_idx<this->size.x() && y_idx<this->size.y() && z_idx<this->size.z()){
-                getVoxel(x_idx, y_idx, z_idx);
+                getVoxel(x_idx, y_idx, z_idx, tetra_data);
             }
         }
         printf("density range [%.3f ,%.3f]\n",min_den,max_den);
@@ -50,7 +50,7 @@ int Volume::indexToData(Eigen::Vector3i index)
 {
     return index.z() * this->size.x() * this->size.y() + index.y() * this->size.x() + index.x();
 }
-void Volume::getVoxel(int x_idx, int y_idx, int z_idx)
+void Volume::getVoxel(int x_idx, int y_idx, int z_idx, std::vector<Tetrahedron> & tetra_data)
 {
     Eigen::Vector3i base(x_idx, y_idx, z_idx);
     int v1 = indexToData(Eigen::Vector3i(x_idx, y_idx, z_idx));

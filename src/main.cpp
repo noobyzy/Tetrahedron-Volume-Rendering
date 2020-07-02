@@ -351,11 +351,14 @@ bool SortFunc(const Intersection_effect& ef_a, const Intersection_effect& ef_b){
 
 int main()
 {
+	std::vector<Tetrahedron> tetra_list;
+	std::vector<MyVertex> vertex_list;
+
 	/*
 	 * 1. Volume Setting
 	 */
 	
-	Volume vol("data/test2.bin");
+	Volume vol("data/test2.bin", tetra_list, vertex_list);
 	/*
 	 * 2. Camera Setting
 	 */
