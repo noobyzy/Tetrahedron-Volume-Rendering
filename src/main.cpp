@@ -286,6 +286,7 @@ void CalculateIntersectionEffect(std::vector<Intersection_effect> & effectlist_f
 								std::vector<MyVertex> *Allvertices,
 								int NumOfSamples = 3)
 {
+	float DISTCONST = 0.5;
 	for(int tetra_iter=0; tetra_iter < Intersectionlist_for_this_pixel->size(); ++tetra_iter){
 		Intersection_effect record;
 		Eigen::Vector3f ip0, ip1;
@@ -296,12 +297,13 @@ void CalculateIntersectionEffect(std::vector<Intersection_effect> & effectlist_f
 		record.color = _color; record.opacity = _opacity;
 		for(int i=0; i<NumOfSamples; ++i){
 			Eigen::Vector3f ip = ip0 + d*i;
-			float s = InterpolateScalar(Alltetra->at(tetra_iter), ip, Allvertices);
+			float s = InterpolateScalar(Alltetra->at(tetra_iter), ip, Allvertices); // interpolated density of the sampled point
 			tinycolormap::Color tinycolor = tinycolormap::GetColor(s, tinycolormap::ColormapType::Jet);
 			_color.x() = tinycolor.r(); _color.y() = tinycolor.g(); _color.z() = tinycolor.b();
-			
+			record.color += DISTCONST * d.norm() * (1-record.opacity) * _color;
+			record.opacity += DISTCONST * d.norm() * (1-record.opacity) * (1-exp(-s*d.norm())); // opacity_src
 		}
-
+		effectlist_for_this_pixel.push_back(record);
 	}
 }
 
