@@ -64,11 +64,6 @@ bool is_inside_triangle(Eigen::Vector2f va, Eigen::Vector2f vb, Eigen::Vector2f 
 	line_c_test = (line_side(va, vb, p) == line_side(va, vb, vc));
 	line_b_test = (line_side(va, vc, p) == line_side(va, vc, vb));
 	line_a_test = (line_side(vc, vb, p) == line_side(vc, vb, va));
-	/*if(p.x() == 202 && p.y() == 1){
-		std::cout<<"line_c test  "<<line_c_test<<std::endl;
-		std::cout<<"line_b test  "<<line_b_test<<std::endl;
-		std::cout<<"line_a test  "<<line_a_test<<std::endl;
-	}*/
 	return (line_c_test && line_b_test && line_a_test);
 }
 
@@ -87,10 +82,10 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 		Eigen::Vector2f v3_proj = SSC->at(tetra_list->at(i).v3_idx);
 		Eigen::Vector2f v4_proj = SSC->at(tetra_list->at(i).v4_idx);
 
-		if(v1_proj.x() < 0.0 || v1_proj.y() < 0.0 || v1_proj.x() >1023 || v1_proj.y() >1023 ||
-		   v2_proj.x() < 0.0 || v2_proj.y() < 0.0 || v2_proj.x() >1023 || v2_proj.y() >1023 ||
-		   v3_proj.x() < 0.0 || v3_proj.y() < 0.0 || v3_proj.x() >1023 || v3_proj.y() >1023 ||
-		   v4_proj.x() < 0.0 || v4_proj.y() < 0.0 || v4_proj.x() >1023 || v4_proj.y() >1023){
+		if(v1_proj.x() < 0.0f || v1_proj.y() < 0.0f || v1_proj.x() >1023.0f || v1_proj.y() >1023.0f ||
+		   v2_proj.x() < 0.0f || v2_proj.y() < 0.0f || v2_proj.x() >1023.0f || v2_proj.y() >1023.0f ||
+		   v3_proj.x() < 0.0f || v3_proj.y() < 0.0f || v3_proj.x() >1023.0f || v3_proj.y() >1023.0f ||
+		   v4_proj.x() < 0.0f || v4_proj.y() < 0.0f || v4_proj.x() >1023.0f || v4_proj.y() >1023.0f){
 			   continue;
 		   }
 		/* lower bound and upper bound of x and y */
@@ -428,7 +423,7 @@ int main()
 	 * 2. Camera Setting
 	 */
 	
-	Eigen::Vector3f cameraPosition= vol.bbox.getCenter()-2.5*Eigen::Vector3f(0,0,vol.size_physics.z());
+	Eigen::Vector3f cameraPosition= vol.bbox.getCenter()-5*Eigen::Vector3f(0,0,vol.size_physics.z());
 	Eigen::Vector3f cameraLookAt= vol.bbox.getCenter();
 	Eigen::Vector3f cameraUp(0, 1, 0);
 	float verticalFov = 45;
