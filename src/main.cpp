@@ -8,7 +8,7 @@
 #include "classifier.h"
 #include "tetra.h"
 #include <iostream>
-#include <omp.h>
+// #include <omp.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
@@ -37,8 +37,8 @@ void ComputeScreenSpaceProjections(std::vector<Eigen::Vector2f> & SSC,
 	for(int i=0; i<Vertices->size(); ++i){
 		Ray ray(camera->m_Pos, Vertices->at(i).coordinate - camera->m_Pos);
 		Eigen::Vector3f p = (1.0f / ray.m_Dir.dot(camera->m_Forward))*ray.m_Dir - camera->m_Forward;
-		SSC.push_back(Eigen::Vector2f(p.dot(camera->m_Right)/camera->m_Right.squaredNorm() * camera->m_Film.m_Res.x()/2.0f,
-									  p.dot(camera->m_Up)/camera->m_Up.squaredNorm() * camera->m_Film.m_Res.y()/2.0f));
+		SSC.push_back(Eigen::Vector2f(p.dot(camera->m_Right)/camera->m_Right.squaredNorm() * camera->m_Film.m_Res.x()/2.0f + camera->m_Film.m_Res.x()/2.0f,
+									  p.dot(camera->m_Up)/camera->m_Up.squaredNorm() * camera->m_Film.m_Res.y()/2.0f + camera->m_Film.m_Res.y()/2.0f));
 	}
 }
 
@@ -251,17 +251,17 @@ void RayTetraIntersection(Eigen::Vector3f & ip0, Eigen::Vector3f & ip1,
 	Eigen::Vector3f p1,p2,p3,p4, regp;
 	reg.push_back(p1); reg.push_back(p2); reg.push_back(p3); reg.push_back(p4);
 	a[0] = intersect_triangle(reg[0], (Allvertices->at(tetra.v1_idx)).coordinate,
-						(Allvertices->at(tetra.v2_idx)).coordinate,
-						(Allvertices->at(tetra.v3_idx)).coordinate, ray);
+									  (Allvertices->at(tetra.v2_idx)).coordinate,
+									  (Allvertices->at(tetra.v3_idx)).coordinate, ray);
 	a[1] = intersect_triangle(reg[1], (Allvertices->at(tetra.v1_idx)).coordinate,
-						(Allvertices->at(tetra.v2_idx)).coordinate,
-						(Allvertices->at(tetra.v4_idx)).coordinate, ray);
+									  (Allvertices->at(tetra.v2_idx)).coordinate,
+									  (Allvertices->at(tetra.v4_idx)).coordinate, ray);
 	a[2] = intersect_triangle(reg[2], (Allvertices->at(tetra.v1_idx)).coordinate,
-						(Allvertices->at(tetra.v3_idx)).coordinate,
-						(Allvertices->at(tetra.v4_idx)).coordinate, ray);
+									  (Allvertices->at(tetra.v3_idx)).coordinate,
+									  (Allvertices->at(tetra.v4_idx)).coordinate, ray);
 	a[3] = intersect_triangle(reg[3], (Allvertices->at(tetra.v2_idx)).coordinate,
-						(Allvertices->at(tetra.v3_idx)).coordinate,
-						(Allvertices->at(tetra.v4_idx)).coordinate, ray);
+									  (Allvertices->at(tetra.v3_idx)).coordinate,
+									  (Allvertices->at(tetra.v4_idx)).coordinate, ray);
 	for(int i=0; i<4; ++i){
 		if(a[i]){
 			reg2.push_back(reg[i]);
