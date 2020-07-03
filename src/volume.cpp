@@ -33,11 +33,11 @@ Volume::Volume(std::string volumefile, std::vector<Tetrahedron> & tetra_data, st
             min_den = std::min(min_den,den);
             max_den = std::max(max_den,den);
             vertex_list.push_back(MyVertex(this->dx * x_idx, this->dx * y_idx, this->dx * z_idx, den));
-            if(x_idx<this->size.x() && y_idx<this->size.y() && z_idx<this->size.z()){
+            if(x_idx<this->size.x() - 1 && y_idx<this->size.y() - 1 && z_idx<this->size.z() - 1){
                 getVoxel(x_idx, y_idx, z_idx, tetra_data);
             }
         }
-        printf("density range [%.3f ,%.3f]\n",min_den,max_den);
+        //printf("density range [%.3f ,%.3f]\n",min_den,max_den);
     }
     fclose(fp);
 };
