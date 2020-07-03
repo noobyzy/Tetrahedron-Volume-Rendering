@@ -1,2 +1,11 @@
 .vscode
 build
+data/datasets/aorta.inp
+data/datasets/blunt_wni.inp
+data/datasets/blunt.inp
+data/datasets/bucky.inp
+data/datasets/fighter.off
+data/datasets/post.inp
+data/datasets/sf2.inp
+data/datasets/spx.inp
+data/datasets/torso.off

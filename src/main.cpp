@@ -8,7 +8,7 @@
 #include "classifier.h"
 #include "tetra.h"
 #include <iostream>
-// #include <omp.h>
+#include <omp.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
@@ -516,6 +516,7 @@ int main()
 	ComputeScreenSpaceProjections(SSC, &vertex_list, &camera);
 	ExtractIntersectionRecords(&tetra_list, &SSC, PerPixelIntersectionList);
 	
+	#pragma omp parallel for
 	for (int i = 0; i < camera.m_Film.m_Res.x(); i++){
 		for(int j = 0; j < camera.m_Film.m_Res.y(); j++){
 			std::vector<int> list = PerPixelIntersectionList[i][j];

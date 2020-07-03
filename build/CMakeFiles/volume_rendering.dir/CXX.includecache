@@ -1167,6 +1167,8 @@ tetra.h
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/tetra.h
 iostream
 -
+omp.h
+-
 stb_image_write.h
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/stb_image_write.h
 
