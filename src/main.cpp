@@ -17,7 +17,7 @@
 #define HEIGHT 1024
 
 #define DISTCONST 0.8f
-#define NUM_Samples 18
+#define NUM_Samples 3
 
 #define MIN4(a,b,c,d) (((a)<(b)?(a):(b))<((c)<(d)?(c):(d))?((a)<(b)?(a):(b)):((c)<(d)?(c):(d)))
 #define MAX4(a,b,c,d) (((a)>(b)?(a):(b))>((c)>(d)?(c):(d))?((a)>(b)?(a):(b)):((c)>(d)?(c):(d)))
@@ -54,8 +54,17 @@ void ComputeScreenSpaceProjections(std::vector<Eigen::Vector2f> & SSC,
 			continue;
 		}
 		Eigen::Vector3f p = (1.0f / ray.m_Dir.dot(camera->m_Forward))*ray.m_Dir - camera->m_Forward;
+
+		float y_idx = p.dot(camera->m_Up)/camera->m_Up.squaredNorm() * camera->m_Film.m_Res.y()/2.0f + camera->m_Film.m_Res.y()/2.0f;
+		// if(y_idx == 512.0f) {
+		// 	if (rand() % 2) {
+		// 		y_idx += 0.0005;
+		// 	} else {
+		// 		y_idx -= 0.0005;
+		// 	}
+		// }
 		SSC.push_back(Eigen::Vector2f(p.dot(camera->m_Right)/camera->m_Right.squaredNorm() * camera->m_Film.m_Res.x()/2.0f + camera->m_Film.m_Res.x()/2.0f,
-									  p.dot(camera->m_Up)/camera->m_Up.squaredNorm() * camera->m_Film.m_Res.y()/2.0f + camera->m_Film.m_Res.y()/2.0f));
+									  y_idx));
 	}
 }
 
@@ -121,20 +130,28 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 		if(xub>xmax) xmax = xub;
 		if(yub>ymax) ymax = yub;*/
 
-		if(i==TETRA_ID){
+		/*if(i==TETRA_ID){
 			std::cout<<"x,y upper&lower bound:    "<<xlb<<" "<<xub<<" "<<ylb<<" "<<yub<<std::endl;
 			std::cout<<"v1: "<<v1_proj.x()<<" "<<v1_proj.y()<<std::endl;
 			std::cout<<"v2: "<<v2_proj.x()<<" "<<v2_proj.y()<<std::endl;
 			std::cout<<"v3: "<<v3_proj.x()<<" "<<v3_proj.y()<<std::endl;
 			std::cout<<"v4: "<<v4_proj.x()<<" "<<v4_proj.y()<<std::endl;
 
-		}
+		}*/
+
+		/*if(ylb <= 512 && yub >= 512){
+			std::cout<<"x,y upper&lower bound:    "<<xlb<<" "<<xub<<" "<<ylb<<" "<<yub<<std::endl;
+			std::cout<<"v1: "<<v1_proj.x()<<" "<<v1_proj.y()<<std::endl;
+			std::cout<<"v2: "<<v2_proj.x()<<" "<<v2_proj.y()<<std::endl;
+			std::cout<<"v3: "<<v3_proj.x()<<" "<<v3_proj.y()<<std::endl;
+			std::cout<<"v4: "<<v4_proj.x()<<" "<<v4_proj.y()<<std::endl;
+		}*/
 		
 
 		if(is_inside_triangle(v1_proj, v2_proj, v3_proj, v4_proj) || is_inside_triangle(v1_proj, v2_proj, v4_proj, v3_proj) || is_inside_triangle(v1_proj, v3_proj, v4_proj, v2_proj) || is_inside_triangle(v2_proj, v3_proj, v4_proj, v1_proj)){
 			/* at least one vertex is inside the triangle consist of other 3 vertices*/
 			// the projected shape is a triangle
-			if(i == TETRA_ID) std::cout<<"triangle yes"<<std::endl;
+			//if(i == TETRA_ID) std::cout<<"triangle yes"<<std::endl;
 			// determine the 3 vertices of triangle
 			Eigen::Vector2f tri_v1, tri_v2, tri_v3;
 			if(is_inside_triangle(v1_proj, v2_proj, v3_proj, v4_proj) == true){
@@ -155,12 +172,12 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 				tri_v3 = v4_proj;
 			}
 
-			if(i == TETRA_ID){
+			/*if(i == TETRA_ID){
 				std::cout<<"va: "<<tri_v1.x()<<" "<<tri_v1.y()<<std::endl;
 				std::cout<<"vb: "<<tri_v2.x()<<" "<<tri_v2.y()<<std::endl;
 				std::cout<<"vc: "<<tri_v3.x()<<" "<<tri_v3.y()<<std::endl;
 
-			}
+			}*/
 
 			// iterate through the square (xlb, xub, ylb, yub), check whether the pixel inside the triangle
 			for(int pixel_i = xlb; pixel_i <= xub; pixel_i++){
@@ -168,7 +185,8 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 					Eigen::Vector2f temp_pixel = Eigen::Vector2f((float)pixel_i, (float)pixel_j);
 					
 					if(is_inside_triangle(tri_v1, tri_v2, tri_v3, temp_pixel) == true){
-						if(i == TETRA_ID) std::cout<<pixel_i<<" "<<pixel_j<<std::endl;
+						//if(i == TETRA_ID) std::cout<<pixel_i<<" "<<pixel_j<<std::endl;
+						// if(pixel_j == 512) std::cout<<"tri: "<<pixel_i<<" "<<pixel_j<<"  tetra_id: "<<i<<std::endl;
 						PerPixelIntersectionList[pixel_i][pixel_j].push_back(i);
 					}
 
@@ -178,7 +196,7 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 
 		} else {
 			// the projected shape is a quardrilateral
-			if(i == TETRA_ID) std::cout<<"quardri yes"<<std::endl;
+			//if(i == TETRA_ID) std::cout<<"quardri yes"<<std::endl;
 			// determine the 4 points CounterClockWise
 			float Min_x = MIN4(v1_proj.x(), v2_proj.x(), v3_proj.x(), v4_proj.x());
 			Eigen::Vector2f leftmost_point;
@@ -240,12 +258,12 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 			C = rightmost_point;
 			D = l1;
 
-			if(i==TETRA_ID){
+			/*if(i==TETRA_ID){
 				std::cout<<"A: "<<A.x()<<" "<<A.y()<<std::endl;
 				std::cout<<"B: "<<B.x()<<" "<<B.y()<<std::endl;
 				std::cout<<"C: "<<C.x()<<" "<<C.y()<<std::endl;
 				std::cout<<"D: "<<D.x()<<" "<<D.y()<<std::endl;
-			}
+			}*/
 
 			Eigen::Vector2f AB = B - A;
 			Eigen::Vector2f BC = C - B;
@@ -260,7 +278,8 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 					Eigen::Vector2f CP = temp_pixel - C;
 					Eigen::Vector2f DP = temp_pixel - D;
 					if(cross_product(AB, AP)>0 && cross_product(BC, BP)>0 && cross_product(CD, CP)>0 && cross_product(DA, DP)>0){
-						if(i == TETRA_ID) std::cout<<pixel_i<<" "<<pixel_j<<std::endl;
+						//if(i == TETRA_ID) std::cout<<pixel_i<<" "<<pixel_j<<std::endl;
+						// if(pixel_j == 512) std::cout<<"quard: "<<pixel_i<<" "<<pixel_j<<"  tetra_id: "<<i<<std::endl;
 						PerPixelIntersectionList[pixel_i][pixel_j].push_back(i);
 					}
 				}
@@ -284,20 +303,28 @@ void CalculateIntersectionEffect(std::vector<Intersection_effect> & effectlist_f
 {
 	
 	for(int tetra_iter=0; tetra_iter < Intersectionlist_for_this_pixel->size(); ++tetra_iter){
+		
 		Intersection_effect record;
 		Eigen::Vector3f ip0, ip1;
+		
 		int exist = RayTetraIntersection(ip0, ip1, Alltetra->at(Intersectionlist_for_this_pixel->at(tetra_iter)), camera, pixel_idx, Allvertices);
 		if(exist==0) continue;
+		
 		record.dist = (ip0 - camera->m_Pos).norm();
 		Eigen::Vector3f d = (ip1-ip0) / NumOfSamples;
+		
 		Eigen::Vector3f _color(0.0f,0.0f,0.0f); float _opacity = 0.0f;
-		record.color = _color; record.opacity = _opacity;
+		
+		record.color = _color; 
+		record.opacity = _opacity;
+		
 		for(int i=0; i<NumOfSamples; ++i){
 			Eigen::Vector3f ip = ip0 + d*i;
 			float s = InterpolateScalar(Alltetra->at(Intersectionlist_for_this_pixel->at(tetra_iter)), ip, Allvertices); // interpolated density of the sampled point
 			//std::cout<<"hello2"<<std::endl;
 			tinycolormap::Color tinycolor = tinycolormap::GetColor(s, tinycolormap::ColormapType::Jet);
 			_color.x() = tinycolor.r(); _color.y() = tinycolor.g(); _color.z() = tinycolor.b();
+			_color = s * _color;
 			record.color += DISTCONST * d.norm() * (1-record.opacity) * _color;
 			record.opacity += DISTCONST * d.norm() * (1-record.opacity) * (1-exp(-s*d.norm())); // opacity_src
 		}
@@ -462,7 +489,7 @@ int main()
 	 * 2. Camera Setting
 	 */
 	
-	Eigen::Vector3f cameraPosition= vol.bbox.getCenter()-2.5*Eigen::Vector3f(0,0,vol.size_physics.z());
+	Eigen::Vector3f cameraPosition= vol.bbox.getCenter()-2.5*Eigen::Vector3f(0.34,0.89,vol.size_physics.z());
 	Eigen::Vector3f cameraLookAt= vol.bbox.getCenter();
 	Eigen::Vector3f cameraUp(0, 1, 0);
 	float verticalFov = 45;
