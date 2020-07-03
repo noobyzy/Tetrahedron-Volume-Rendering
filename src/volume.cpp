@@ -14,6 +14,56 @@ Volume::Volume(std::string volumefile, std::vector<Tetrahedron> & tetra_data, st
 {
     FILE *fp = fopen(volumefile.c_str(), "rb");
     if (fp)
+    {   
+        int vertex_amount, tetra_amount; 
+        int waste;
+        fread(&vertex_amount, sizeof(int), 1, fp);
+        fread(&tetra_amount, sizeof(int), 1, fp);
+        
+        fread(&waste, sizeof(int), 1, fp);
+        fread(&waste, sizeof(int), 1, fp);
+        fread(&waste, sizeof(int), 1, fp);
+
+        for(int i = 0; i < vertex_amount; i++){
+            fread(&waste, sizeof(int), 1, fp);
+            float posx, posy, posz;
+            fread(&posx, sizeof(float), 1, fp);
+            fread(&posy, sizeof(float), 1, fp);
+            fread(&posz, sizeof(float), 1, fp);
+            vertex_list.push_back(MyVertex(posx, posy, posz, 0.0f));
+        }
+
+        for(int i = 0; i < tetra_amount; i++){
+            fread(&waste, sizeof(int), 1, fp);
+            fread(&waste, sizeof(int), 1, fp);
+            char waste_tet;
+            fread(&waste_tet, sizeof(char), 1, fp);
+            fread(&waste_tet, sizeof(char), 1, fp);
+            fread(&waste_tet, sizeof(char), 1, fp);
+
+            int idA, idB, idC, idD;
+            fread(&idA, sizeof(float), 1, fp);
+            fread(&idB, sizeof(float), 1, fp);
+            fread(&idC, sizeof(float), 1, fp);
+            fread(&idD, sizeof(float), 1, fp);
+
+            idA -= 1;
+            idB -= 1;
+            idC -= 1;
+            idD -= 1;
+            tetra_data.push_back(Tetrahedron(idA, idB, idC, idD));
+        }
+
+        for(int i = 0; i < vertex_amount; i++){
+            fread(&waste, sizeof(int), 1, fp);
+            float density;
+            fread(&density, sizeof(float), 1, fp);
+            vertex_list[i].density = density;
+        } 
+    }
+    fclose(fp);
+    /*FILE *fp = fopen(volumefile.c_str(), "rb");
+    if (fp)
     {    
         fread(this->size.data(),sizeof(int),3,fp);
         fread(this->size_physics.data(),sizeof(float),3,fp);
@@ -39,8 +89,10 @@ Volume::Volume(std::string volumefile, std::vector<Tetrahedron> & tetra_data, st
         }
         //printf("density range [%.3f ,%.3f]\n",min_den,max_den);
     }
-    fclose(fp);
+    fclose(fp);*/
 };
+
+
 bool Volume::getRayStartEnd(Ray &ray, float &t_start, float &t_end)
 {
     return bbox.rayIntersection(ray, t_start, t_end);

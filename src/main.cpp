@@ -474,7 +474,7 @@ int main()
 	 */
 	
 	
-	Volume vol("data/test2.bin", tetra_list, vertex_list);
+	Volume vol("data/datasets/bucky.inp", tetra_list, vertex_list);
 
 	/*for(int i = 205000; i < 205500; i++){
 		std::cout<<"tetra_id: "<<i<<std::endl;
