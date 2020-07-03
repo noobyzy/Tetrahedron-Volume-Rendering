@@ -37,7 +37,7 @@ Volume::Volume(std::string volumefile, std::vector<Tetrahedron> & tetra_data, st
                 getVoxel(x_idx, y_idx, z_idx, tetra_data);
             }
         }
-        printf("density range [%.3f ,%.3f]\n",min_den,max_den);
+        //printf("density range [%.3f ,%.3f]\n",min_den,max_den);
     }
     fclose(fp);
 };

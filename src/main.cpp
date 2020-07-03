@@ -12,6 +12,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
+#define TETRA_ID 28200
 #define WIDTH 1024
 #define HEIGHT 1024
 
@@ -63,28 +64,13 @@ bool is_inside_triangle(Eigen::Vector2f va, Eigen::Vector2f vb, Eigen::Vector2f 
 	line_c_test = (line_side(va, vb, p) == line_side(va, vb, vc));
 	line_b_test = (line_side(va, vc, p) == line_side(va, vc, vb));
 	line_a_test = (line_side(vc, vb, p) == line_side(vc, vb, va));
-	if(p.x() == 202 && p.y() == 1){
+	/*if(p.x() == 202 && p.y() == 1){
 		std::cout<<"line_c test  "<<line_c_test<<std::endl;
 		std::cout<<"line_b test  "<<line_b_test<<std::endl;
 		std::cout<<"line_a test  "<<line_a_test<<std::endl;
-	}
+	}*/
 	return (line_c_test && line_b_test && line_a_test);
 }
-
-bool another_inside_triangle(Eigen::Vector2f va, Eigen::Vector2f vb, Eigen::Vector2f vc, Eigen::Vector2f p){
-	Eigen::Vector2f PA = va - p;
-	Eigen::Vector2f PB = vb - p;
-	Eigen::Vector2f PC = vc - p;
-
-	if((PA.cross(PB)).dot((PB.cross(PC))) > 0){
-		return true;
-	} else {
-		return false;
-	}
-
-}
-
-
 
 /* get the projection of each tetrahedron, get the piexl projected by the tetrahedron, build a intersection list for each pixel */
 void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vector<Eigen::Vector2f>* SSC, std::vector<std::vector<std::vector<int>>>& PerPixelIntersectionList){
@@ -119,7 +105,7 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 		if(xub>xmax) xmax = xub;
 		if(yub>ymax) ymax = yub;*/
 
-		if(i==8907){
+		if(i==TETRA_ID){
 			std::cout<<"x,y upper&lower bound:    "<<xlb<<" "<<xub<<" "<<ylb<<" "<<yub<<std::endl;
 			std::cout<<"v1: "<<v1_proj.x()<<" "<<v1_proj.y()<<std::endl;
 			std::cout<<"v2: "<<v2_proj.x()<<" "<<v2_proj.y()<<std::endl;
@@ -132,7 +118,7 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 		if(is_inside_triangle(v1_proj, v2_proj, v3_proj, v4_proj) || is_inside_triangle(v1_proj, v2_proj, v4_proj, v3_proj) || is_inside_triangle(v1_proj, v3_proj, v4_proj, v2_proj) || is_inside_triangle(v2_proj, v3_proj, v4_proj, v1_proj)){
 			/* at least one vertex is inside the triangle consist of other 3 vertices*/
 			// the projected shape is a triangle
-			if(i == 8907) std::cout<<"triangle yes"<<std::endl;
+			if(i == TETRA_ID) std::cout<<"triangle yes"<<std::endl;
 			// determine the 3 vertices of triangle
 			Eigen::Vector2f tri_v1, tri_v2, tri_v3;
 			if(is_inside_triangle(v1_proj, v2_proj, v3_proj, v4_proj) == true){
@@ -153,7 +139,7 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 				tri_v3 = v4_proj;
 			}
 
-			if(i == 8907){
+			if(i == TETRA_ID){
 				std::cout<<"va: "<<tri_v1.x()<<" "<<tri_v1.y()<<std::endl;
 				std::cout<<"vb: "<<tri_v2.x()<<" "<<tri_v2.y()<<std::endl;
 				std::cout<<"vc: "<<tri_v3.x()<<" "<<tri_v3.y()<<std::endl;
@@ -166,7 +152,7 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 					Eigen::Vector2f temp_pixel = Eigen::Vector2f((float)pixel_i, (float)pixel_j);
 					
 					if(is_inside_triangle(tri_v1, tri_v2, tri_v3, temp_pixel) == true){
-						if(i == 8907) std::cout<<pixel_i<<" "<<pixel_j<<std::endl;
+						if(i == TETRA_ID) std::cout<<pixel_i<<" "<<pixel_j<<std::endl;
 						PerPixelIntersectionList[pixel_i][pixel_j].push_back(i);
 					}
 
@@ -176,7 +162,7 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 
 		} else {
 			// the projected shape is a quardrilateral
-			if(i == 8907) std::cout<<"quardri yes"<<std::endl;
+			if(i == TETRA_ID) std::cout<<"quardri yes"<<std::endl;
 			// determine the 4 points CounterClockWise
 			float Min_x = MIN4(v1_proj.x(), v2_proj.x(), v3_proj.x(), v4_proj.x());
 			Eigen::Vector2f leftmost_point;
@@ -238,7 +224,7 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 			C = rightmost_point;
 			D = l1;
 
-			if(i==8907){
+			if(i==TETRA_ID){
 				std::cout<<"A: "<<A.x()<<" "<<A.y()<<std::endl;
 				std::cout<<"B: "<<B.x()<<" "<<B.y()<<std::endl;
 				std::cout<<"C: "<<C.x()<<" "<<C.y()<<std::endl;
@@ -258,7 +244,7 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 					Eigen::Vector2f CP = temp_pixel - C;
 					Eigen::Vector2f DP = temp_pixel - D;
 					if(cross_product(AB, AP)>0 && cross_product(BC, BP)>0 && cross_product(CD, CP)>0 && cross_product(DA, DP)>0){
-						if(i == 8907) std::cout<<pixel_i<<" "<<pixel_j<<std::endl;
+						if(i == TETRA_ID) std::cout<<pixel_i<<" "<<pixel_j<<std::endl;
 						PerPixelIntersectionList[pixel_i][pixel_j].push_back(i);
 					}
 				}
@@ -315,14 +301,14 @@ void RayTetraIntersection(Eigen::Vector3f & ip0, Eigen::Vector3f & ip1,
 	int a[4];
 	Eigen::Vector3f p1,p2,p3,p4, regp;
 	reg.push_back(p1); reg.push_back(p2); reg.push_back(p3); reg.push_back(p4);
-	/*std::cout<<Allvertices->at(tetra.v1_idx).coordinate.x()<<" "<<Allvertices->at(tetra.v1_idx).coordinate.y()<<" "<<Allvertices->at(tetra.v1_idx).coordinate.z()<<std::endl;
+	std::cout<<Allvertices->at(tetra.v1_idx).coordinate.x()<<" "<<Allvertices->at(tetra.v1_idx).coordinate.y()<<" "<<Allvertices->at(tetra.v1_idx).coordinate.z()<<std::endl;
 	std::cout<<Allvertices->at(tetra.v2_idx).coordinate.x()<<" "<<Allvertices->at(tetra.v2_idx).coordinate.y()<<" "<<Allvertices->at(tetra.v2_idx).coordinate.z()<<std::endl;
 	std::cout<<Allvertices->at(tetra.v3_idx).coordinate.x()<<" "<<Allvertices->at(tetra.v3_idx).coordinate.y()<<" "<<Allvertices->at(tetra.v3_idx).coordinate.z()<<std::endl;
 	std::cout<<Allvertices->at(tetra.v4_idx).coordinate.x()<<" "<<Allvertices->at(tetra.v4_idx).coordinate.y()<<" "<<Allvertices->at(tetra.v4_idx).coordinate.z()<<std::endl;
 
 
 	std::cout<<"ray origin: "<<ray.m_Ori.x()<<" "<<ray.m_Ori.y()<<" "<<ray.m_Ori.z()<<std::endl;
-	std::cout<<"ray direction: "<<ray.m_Dir.x()<<" "<<ray.m_Dir.y()<<" "<<ray.m_Dir.z()<<std::endl;*/
+	std::cout<<"ray direction: "<<ray.m_Dir.x()<<" "<<ray.m_Dir.y()<<" "<<ray.m_Dir.z()<<std::endl;
 	a[0] = intersect_triangle(reg[0], (Allvertices->at(tetra.v1_idx)).coordinate,
 						(Allvertices->at(tetra.v2_idx)).coordinate,
 						(Allvertices->at(tetra.v3_idx)).coordinate, ray);
