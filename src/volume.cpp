@@ -22,11 +22,13 @@ Volume::Volume(std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & ve
     int trash;
     std::string str;
     int vertex_num, tetra_num, v1_buffer, v2_buffer, v3_buffer, v4_buffer;
-    float x_buffer, y_buffer, z_buffer, density_buffer,
+    float x_buffer, y_buffer, z_buffer, density_buffer, density_max=-1,
           xmin=400, xmax=-400, ymin=400, ymax=-400, zmin=400, zmax=-400;
+    std::vector<float> density_list;
 
     volumefile >> vertex_num;
     std::cout << "vertex_num: " << vertex_num << std::endl;
+    density_list.reserve(vertex_num);
     volumefile >> tetra_num;
     std::cout << "tetra_num: " << tetra_num << std::endl;
     for (int i = 0; i < 3; i++) {
@@ -62,10 +64,14 @@ Volume::Volume(std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & ve
     for(int i=0; i<vertex_num; ++i){
         volumefile >> trash; // vertex index
         volumefile >> density_buffer;
+        if(density_max < density_buffer) density_max = density_buffer;
         vertex_list[i].coordinate = Eigen::Vector3f(vertex_list[i].coordinate.x()-xmin,
                                                     vertex_list[i].coordinate.y()-ymin,
                                                     vertex_list[i].coordinate.z()-zmin);    
-        vertex_list[i].density = density_buffer;
+        density_list.push_back(density_buffer);
+    }
+    for(int i=0; i<vertex_num; ++i){
+        vertex_list[i].density = density_list[i] / density_max;
     }
     this->bbox = AABB(0,0,0, xmax-xmin, ymax-ymin, zmax-zmin);
     this->size_physics = Eigen::Vector3f(xmax-xmin, ymax-ymin, zmax-zmin);

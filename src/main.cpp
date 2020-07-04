@@ -8,7 +8,7 @@
 #include "classifier.h"
 #include "tetra.h"
 #include <iostream>
-#include <omp.h>
+// #include <omp.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
@@ -16,7 +16,7 @@
 #define WIDTH 1024
 #define HEIGHT 1024
 
-#define DISTCONST 0.8f
+#define DISTCONST 0.05f
 #define NUM_Samples 3
 
 #define MIN4(a,b,c,d) (((a)<(b)?(a):(b))<((c)<(d)?(c):(d))?((a)<(b)?(a):(b)):((c)<(d)?(c):(d)))
@@ -324,7 +324,7 @@ void CalculateIntersectionEffect(std::vector<Intersection_effect> & effectlist_f
 			//std::cout<<"hello2"<<std::endl;
 			tinycolormap::Color tinycolor = tinycolormap::GetColor(s, tinycolormap::ColormapType::Jet);
 			_color.x() = tinycolor.r(); _color.y() = tinycolor.g(); _color.z() = tinycolor.b();
-			// _color = s * _color;
+			 _color = s * _color;
 			record.color += DISTCONST * d.norm() * (1-record.opacity) * _color;
 			record.opacity += DISTCONST * d.norm() * (1-record.opacity) * (1-exp(-s*d.norm())); // opacity_src
 		}
@@ -489,7 +489,7 @@ int main()
 	 * 2. Camera Setting
 	 */
 	
-	Eigen::Vector3f cameraPosition= vol.bbox.getCenter()-2.5*Eigen::Vector3f(0,0,vol.size_physics.z());
+	Eigen::Vector3f cameraPosition= vol.bbox.getCenter()-2.5*Eigen::Vector3f(0.3,0.7,vol.size_physics.z());
 	Eigen::Vector3f cameraLookAt= vol.bbox.getCenter();
 	Eigen::Vector3f cameraUp(0, 1, 0);
 	float verticalFov = 45;
@@ -516,7 +516,7 @@ int main()
 	ComputeScreenSpaceProjections(SSC, &vertex_list, &camera);
 	ExtractIntersectionRecords(&tetra_list, &SSC, PerPixelIntersectionList);
 	
-	#pragma omp parallel for
+	// #pragma omp parallel for
 	for (int i = 0; i < camera.m_Film.m_Res.x(); i++){
 		for(int j = 0; j < camera.m_Film.m_Res.y(); j++){
 			std::vector<int> list = PerPixelIntersectionList[i][j];
