@@ -20,7 +20,7 @@ public:
     float grad_maxnorm;
     Volume();
     ~Volume();
-    Volume(std::string volumefile, std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & vertex_list);
+    Volume(std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & vertex_list);
     bool getRayStartEnd(Ray& ray,float& t_start,float & t_end);
     int indexToData(Eigen::Vector3i index);
     void getVoxel(int x_idx, int y_idx, int z_idx, std::vector<Tetrahedron> & tetra_data);

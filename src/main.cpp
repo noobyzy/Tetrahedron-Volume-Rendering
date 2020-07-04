@@ -324,7 +324,7 @@ void CalculateIntersectionEffect(std::vector<Intersection_effect> & effectlist_f
 			//std::cout<<"hello2"<<std::endl;
 			tinycolormap::Color tinycolor = tinycolormap::GetColor(s, tinycolormap::ColormapType::Jet);
 			_color.x() = tinycolor.r(); _color.y() = tinycolor.g(); _color.z() = tinycolor.b();
-			_color = s * _color;
+			// _color = s * _color;
 			record.color += DISTCONST * d.norm() * (1-record.opacity) * _color;
 			record.opacity += DISTCONST * d.norm() * (1-record.opacity) * (1-exp(-s*d.norm())); // opacity_src
 		}
@@ -474,7 +474,7 @@ int main()
 	 */
 	
 	
-	Volume vol("data/test2.bin", tetra_list, vertex_list);
+	Volume vol(tetra_list, vertex_list);
 
 	/*for(int i = 205000; i < 205500; i++){
 		std::cout<<"tetra_id: "<<i<<std::endl;
@@ -489,7 +489,7 @@ int main()
 	 * 2. Camera Setting
 	 */
 	
-	Eigen::Vector3f cameraPosition= vol.bbox.getCenter()-2.5*Eigen::Vector3f(0.34,0.89,vol.size_physics.z());
+	Eigen::Vector3f cameraPosition= vol.bbox.getCenter()-2.5*Eigen::Vector3f(0,0,vol.size_physics.z());
 	Eigen::Vector3f cameraLookAt= vol.bbox.getCenter();
 	Eigen::Vector3f cameraUp(0, 1, 0);
 	float verticalFov = 45;

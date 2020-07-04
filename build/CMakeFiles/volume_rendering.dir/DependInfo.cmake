@@ -4,17 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.cpp" "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/compositor.cpp.obj"
-  "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp" "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/main.cpp.obj"
-  "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.cpp" "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/opticsData.cpp.obj"
-  "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.cpp" "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/volume.cpp.obj"
+  "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/compositor.cpp" "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/compositor.cpp.o"
+  "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/main.cpp" "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/main.cpp.o"
+  "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/opticsData.cpp" "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/opticsData.cpp.o"
+  "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volume.cpp" "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/volume.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
-
-# Preprocessor definitions for this target.
-set(CMAKE_TARGET_DEFINITIONS_CXX
-  "_AMD64_"
-  )
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

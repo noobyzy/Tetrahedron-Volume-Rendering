@@ -1,22 +1,22 @@
 [
 {
-  "directory": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build",
-  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/compositor.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.cpp",
-  "file": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.cpp"
+  "directory": "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/head\" -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src\" -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/include\"  -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/compositor.cpp.o -c \"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/compositor.cpp\"",
+  "file": "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/compositor.cpp"
 },
 {
-  "directory": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build",
-  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/main.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp",
-  "file": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp"
+  "directory": "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/head\" -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src\" -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/include\"  -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/main.cpp.o -c \"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/main.cpp\"",
+  "file": "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/main.cpp"
 },
 {
-  "directory": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build",
-  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/opticsData.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.cpp",
-  "file": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.cpp"
+  "directory": "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/head\" -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src\" -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/include\"  -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/opticsData.cpp.o -c \"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/opticsData.cpp\"",
+  "file": "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/opticsData.cpp"
 },
 {
-  "directory": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build",
-  "command": "D:/MinGW/bin/x86_64-w64-mingw32-g++.exe  -D_AMD64_ @CMakeFiles/volume_rendering.dir/includes_CXX.rsp  -fopenmp -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/volume.cpp.obj -c D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.cpp",
-  "file": "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.cpp"
+  "directory": "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/head\" -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src\" -I\"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/include\"  -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk   -std=gnu++11 -o CMakeFiles/volume_rendering.dir/src/volume.cpp.o -c \"/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volume.cpp\"",
+  "file": "/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volume.cpp"
 }
 ]
