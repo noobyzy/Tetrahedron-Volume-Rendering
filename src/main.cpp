@@ -251,7 +251,7 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 				l1 = diff_2;
 			}
 			
-			//now that the counterclockwise order of 4 vertices is leftmost, l1, rightmost, r1
+			//now that the clockwise order of 4 vertices is leftmost, r1, rightmost, l1
 			Eigen::Vector2f A, B, C, D;
 			A = leftmost_point;
 			B = r1;

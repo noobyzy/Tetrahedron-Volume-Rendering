@@ -1,0 +1,72 @@
+\documentclass[acmtog]{acmart}
+% Title portion
+\title{Tetrahedralization and Volume Rendering (B)} 
+\author{Name: Ziyi Yu   \\ student number:\quad 2018533124
+	\\email:\quad yuzy@shanghaitech.edu.cn}
+\author{Name: Chuan Li   \\ student number:\quad 123456789
+	\\email:\quad licha@shanghaitech.edu.cn}
+\author{Name: Yuhang Gong  \\ student number:\quad 2018533180
+	\\email:\quad gongyh@shanghaitech.edu.cn}
+
+
+% Document starts
+\begin{document}
+\maketitle
+
+\vspace*{2 ex}
+
+
+\section{Introduction}
+
+
+\section{Implementation Details}
+1. Tetrahedralization
+2. SSC
+3. Extract
+4. Calculate intersection effect
+5. Sort
+6. Composition
+
+1. Tetrahedralization
+
+
+
+6. Composition
+\subsection{Extract Intersection Records}
+The screen space projection of tetrahedra is implemented in this step. Since screen space projection of vertices have already been calculated and stored in SSC, we can directly access the projected 2D coordinates of the 4 vertices of a tetrahedron via vertex index. By inspection, the projected shape of a tetrahedron can be either a quardrilateral or a triangle(a concave quardrilateral).
+\\The purpose of screen space projection of tetrahedra is to find out all tetrahedra a ray shooting from a specific pixel intersected with. Every pixel covered by the projected shape of a tetrahedron is considered affected by this tetrahedron in pixel color.
+\\Before we project tetrahedra, a few helper functions are need to simplify our processing.
+\\
+\subsubsection{Helper function: cross product}
+Cross product function basically takes in 2 2D vectors vA,vB, then return a scalar (vA.x * vB.y - vB.x * vA.y). This function is important and have been used a lot in following parts. 
+\\
+\subsubsection{Helper function: the side of line}
+Given a line shooting from point pA to point pB, we need to decide whether point pC is above the line or below the line. This is achieved by cross product CA and AB. If the result > 0, then pC is above the line; if the result = 0, pC is on the line; if the result < 0, pC is below the line.
+\\
+\subsubsection{Helper function: point inside triangle}
+We need to decide whether a point pP is inside a triangle connnected by pA, pB and pC. This is easily achieved by justifing pP and pA are on the same side of pBpC, pP and pB are on the same side of pApC, pP and pC are on the same side of pApB.
+\\
+\subsubsection{Case1: the projection is a triangle}
+By testing whether there exists one of the four projected vertices of a tetrahedra inside the triangle formed by the rest of 3 vertices, we can easily find out whether the projection is a triangle or a quardrilateral.
+\\If the projection is a triangle, we can easily decide what pixels are inside this triangle and then push this tetrahedron to the PerPixelIntersectionList.
+\\To narrowing the range of pixels to be decided, we only test pixels inside a square ranging from the minimum of x,y coordinates of the four vertices to the maximum of x,y coordinates.
+\\
+\subsubsection{Case2: the projection is a quardrilateral}
+If the projection is a quardrilateral, the deciding process is a little bit complex. First of all, we need to find the correct connecting order of the 4 vertices clockwise. This can be achieved by finding out the leftmost and rightmost points pL, pR, then do pLpR line_side test for the rest 2 vertices.
+\\Now that we have pA,pB,pC,pD 4 vertices clockwise, a popular method to decide whether pixel pP is inside the quardrilateral is to do cross product pApB and pApP, BC and BP, CD and CP, DA and DP separately, and test whether the second vector is on the clock wise direction of the first vector. If all of the above conditions are true, then pP is inside quardrilateral pApBpCpD. Push this tetrahedron to the PerPixelIntersectionList.
+\\
+\subsection{Sort Intersection Effect List in Ascending Order by Distance}
+We have calculated the intersection effect of a tetrahedron for the specific pixel. Since the composition step composites all tetrahedron effects from the nearest to the farthest (similar to rendering from front to back in our assignment), we sort the IntersectionEffect list in ascending order by its distance. This is achieved by the sort function from the standard library.
+\\
+
+
+
+
+\section{Results}
+
+
+
+
+
+
+\end{document}
