@@ -108,6 +108,8 @@ Volume::Volume(std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & ve
     // }
     // fclose(fp);
 };
+
+
 bool Volume::getRayStartEnd(Ray &ray, float &t_start, float &t_end)
 {
     return bbox.rayIntersection(ray, t_start, t_end);
