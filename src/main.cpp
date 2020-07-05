@@ -8,7 +8,8 @@
 #include "classifier.h"
 #include "tetra.h"
 #include <iostream>
-// #include <omp.h>
+#include <omp.h>
+#include "include/colormap/colormap.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
@@ -22,6 +23,8 @@
 #define MIN4(a,b,c,d) (((a)<(b)?(a):(b))<((c)<(d)?(c):(d))?((a)<(b)?(a):(b)):((c)<(d)?(c):(d)))
 #define MAX4(a,b,c,d) (((a)>(b)?(a):(b))>((c)>(d)?(c):(d))?((a)>(b)?(a):(b)):((c)>(d)?(c):(d)))
 #define SIGN(x) (((x) > 0)?1:-1)
+
+using namespace colormap;
 
 void printSSC(Tetrahedron tetra, std::vector<Eigen::Vector2f> *SSC){
 	std::cout << "4 SSC are :\n" << SSC->at(tetra.v1_idx).x() << "\t" << SSC->at(tetra.v1_idx).y() << "\n"
@@ -322,11 +325,17 @@ void CalculateIntersectionEffect(std::vector<Intersection_effect> & effectlist_f
 			Eigen::Vector3f ip = ip0 + d*i;
 			float s = InterpolateScalar(Alltetra->at(Intersectionlist_for_this_pixel->at(tetra_iter)), ip, Allvertices); // interpolated density of the sampled point
 			//std::cout<<"hello2"<<std::endl;
-			tinycolormap::Color tinycolor = tinycolormap::GetColor(s, tinycolormap::ColormapType::Jet);
-			_color.x() = tinycolor.r(); _color.y() = tinycolor.g(); _color.z() = tinycolor.b();
-			 _color = s * _color;
+
+			//tinycolormap::Color tinycolor = tinycolormap::GetColor(s, tinycolormap::ColormapType::Jet);
+			//_color.x() = tinycolor.r(); _color.y() = tinycolor.g(); _color.z() = tinycolor.b();
+			transform::HotMetal transform;
+			IDL::CBPaired idl;
+			MATLAB::Jet matlab;
+			Color mc = idl.getColor(s);
+			_color = Eigen::Vector3f((float)mc.r, (float)mc.g, (float)mc.b);
+			_color = s * _color;
 			record.color += DISTCONST * d.norm() * (1-record.opacity) * _color;
-			record.opacity += DISTCONST * d.norm() * (1-record.opacity) * (1-exp(-s*d.norm())); // opacity_src
+			record.opacity += DISTCONST * d.norm() * (1-record.opacity) * (float)mc.a; // opacity_src
 		}
 		//std::cout<<"hello3"<<std::endl;
 		effectlist_for_this_pixel.push_back(record);
@@ -516,7 +525,7 @@ int main()
 	ComputeScreenSpaceProjections(SSC, &vertex_list, &camera);
 	ExtractIntersectionRecords(&tetra_list, &SSC, PerPixelIntersectionList);
 	
-	// #pragma omp parallel for
+	#pragma omp parallel for
 	for (int i = 0; i < camera.m_Film.m_Res.x(); i++){
 		for(int j = 0; j < camera.m_Film.m_Res.y(); j++){
 			std::vector<int> list = PerPixelIntersectionList[i][j];
