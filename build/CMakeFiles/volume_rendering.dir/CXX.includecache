@@ -1130,119 +1130,125 @@ QImage
 QString
 -
 
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/classifier.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/classifier.h
 volume.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volume.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.h
 camera.hpp
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/camera.hpp
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/camera.hpp
 iostream
 -
 cmath
 -
 tinycolormap.hpp
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/tinycolormap.hpp
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/tinycolormap.hpp
 
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/compositor.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.cpp
+compositor.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.h
+
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.h
 Eigen/Dense
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/Eigen/Dense
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/Eigen/Dense
 
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/main.cpp
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp
 algorithm
 -
 volume.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volume.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.h
 opticsData.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/opticsData.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.h
 compositor.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/compositor.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.h
 classifier.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/classifier.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/classifier.h
 camera.hpp
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/camera.hpp
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/camera.hpp
 light.hpp
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/light.hpp
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/light.hpp
 classifier.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/classifier.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/classifier.h
 tetra.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/tetra.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/tetra.h
 iostream
 -
 stb_image_write.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/stb_image_write.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/stb_image_write.h
 
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/opticsData.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.cpp
+opticsData.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.h
+
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.h
 vector
 -
 string
 -
 Eigen/Dense
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/Eigen/Dense
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/Eigen/Dense
 light.hpp
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/light.hpp
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/light.hpp
 iostream
 -
 
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/tetra.h
-=======
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/tetra.h
->>>>>>> 053bf94884e8562b094236a183c0770480d3970a
 vector
 -
 string
 -
 Eigen/Dense
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/Eigen/Dense
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/Eigen/Dense
 iostream
 -
 fstream
 -
 aabb.hpp
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/aabb.hpp
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/aabb.hpp
 volumeData.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volumeData.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volumeData.h
 voxel.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/voxel.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/voxel.h
 ray.hpp
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/ray.hpp
--
-<<<<<<< HEAD
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volume.h
-=======
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/ray.hpp
+
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.cpp
 volume.h
 D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.h
+iostream
+-
+fstream
+-
 
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volume.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.h
 vector
 -
 string
 -
 Eigen/Dense
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/Eigen/Dense
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/Eigen/Dense
 iostream
 -
 fstream
 -
 aabb.hpp
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/aabb.hpp
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/aabb.hpp
 volumeData.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volumeData.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volumeData.h
 voxel.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/voxel.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/voxel.h
 ray.hpp
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/ray.hpp
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/ray.hpp
 tetra.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/tetra.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/tetra.h
 
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volumeData.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volumeData.h
 vector
 -
 string
 -
 Eigen/Dense
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/Eigen/Dense
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/Eigen/Dense
 
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/voxel.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/voxel.h
 volumeData.h
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/src/volumeData.h
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volumeData.h
 

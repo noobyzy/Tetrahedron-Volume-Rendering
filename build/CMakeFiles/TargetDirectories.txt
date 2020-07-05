@@ -1,3 +1,3 @@
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build/CMakeFiles/rebuild_cache.dir
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build/CMakeFiles/edit_cache.dir
-/Users/yuhang/Downloads/Shanghaitech/Sophomore2/Computer Graphics/project/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/edit_cache.dir
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir
+D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/rebuild_cache.dir

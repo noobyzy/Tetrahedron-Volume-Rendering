@@ -119,11 +119,11 @@ void ExtractIntersectionRecords(std::vector<Tetrahedron>* tetra_list, std::vecto
 			   continue;
 		   }
 		/* lower bound and upper bound of x and y */
-		int xlb = std::max((int)std::floor(MIN4(v1_proj.x(), v2_proj.x(), v3_proj.x(), v4_proj.x())), 0);
-		int ylb = std::max((int)std::floor(MIN4(v1_proj.y(), v2_proj.y(), v3_proj.y(), v4_proj.y())), 0);
+		int xlb = std::max((int)std::ceil(MIN4(v1_proj.x(), v2_proj.x(), v3_proj.x(), v4_proj.x())), 0);
+		int ylb = std::max((int)std::ceil(MIN4(v1_proj.y(), v2_proj.y(), v3_proj.y(), v4_proj.y())), 0);
 
-		int xub = std::min((int)std::ceil(MAX4(v1_proj.x(), v2_proj.x(), v3_proj.x(), v4_proj.x())), 1023);
-		int yub = std::min((int)std::ceil(MAX4(v1_proj.y(), v2_proj.y(), v3_proj.y(), v4_proj.y())), 1023);
+		int xub = std::min((int)std::floor(MAX4(v1_proj.x(), v2_proj.x(), v3_proj.x(), v4_proj.x())), 1023);
+		int yub = std::min((int)std::floor(MAX4(v1_proj.y(), v2_proj.y(), v3_proj.y(), v4_proj.y())), 1023);
 
 		/*if(xlb<xmin) xmin = xlb;
 		if(ylb<ymin) ymin = ylb;

@@ -33,7 +33,7 @@ Volume::Volume(std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & ve
     std::cout << "tetra_num: " << tetra_num << std::endl;
     for (int i = 0; i < 3; i++) {
         volumefile >> trash;
-        std::cout << trash << std::endl;
+        //std::cout << trash << std::endl;
     }
     for(int i=0; i<vertex_num; ++i){
         volumefile >> trash; // vertex index
