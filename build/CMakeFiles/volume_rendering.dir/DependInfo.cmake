@@ -4,9 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/compositor.cpp" "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/compositor.cpp.obj"
   "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/main.cpp" "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/main.cpp.obj"
-  "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/opticsData.cpp" "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/opticsData.cpp.obj"
   "D:/MinGW/CG/Tetrahedron-Volume-Rendering/src/volume.cpp" "D:/MinGW/CG/Tetrahedron-Volume-Rendering/build/CMakeFiles/volume_rendering.dir/src/volume.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

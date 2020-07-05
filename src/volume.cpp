@@ -13,11 +13,11 @@ void SwapEnd(T &var)
 Volume::Volume(){};
 Volume::~Volume(){};
 
-Volume::Volume(std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & vertex_list)
+Volume::Volume(std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & vertex_list, std::string datapath)
 {
     std::fstream volumefile;
 
-    volumefile.open("data/data.txt", std::ios::in);
+    volumefile.open(datapath, std::ios::in);
 
     int trash;
     std::string str;

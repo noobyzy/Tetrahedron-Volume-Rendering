@@ -5,8 +5,6 @@
 #include <iostream>
 #include <fstream>
 #include "aabb.hpp"
-#include "volumeData.h"
-#include "voxel.h"
 #include "ray.hpp"
 class MyVertex{
     public:

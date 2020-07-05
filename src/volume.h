@@ -5,8 +5,6 @@
 #include <iostream>
 #include <fstream>
 #include "aabb.hpp"
-#include "volumeData.h"
-#include "voxel.h"
 #include "ray.hpp"
 #include "tetra.h"
 class Volume{
@@ -20,7 +18,7 @@ public:
     float grad_maxnorm;
     Volume();
     ~Volume();
-    Volume(std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & vertex_list);
+    Volume(std::vector<Tetrahedron> & tetra_data, std::vector<MyVertex> & vertex_list, std::string datapath);
     bool getRayStartEnd(Ray& ray,float& t_start,float & t_end);
     int indexToData(Eigen::Vector3i index);
     void getVoxel(int x_idx, int y_idx, int z_idx, std::vector<Tetrahedron> & tetra_data);

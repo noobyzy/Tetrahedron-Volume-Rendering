@@ -140,33 +140,6 @@ volume_rendering/fast:
 	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/build
 .PHONY : volume_rendering/fast
 
-src/compositor.obj: src/compositor.cpp.obj
-
-.PHONY : src/compositor.obj
-
-# target to build an object file
-src/compositor.cpp.obj:
-	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/compositor.cpp.obj
-.PHONY : src/compositor.cpp.obj
-
-src/compositor.i: src/compositor.cpp.i
-
-.PHONY : src/compositor.i
-
-# target to preprocess a source file
-src/compositor.cpp.i:
-	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/compositor.cpp.i
-.PHONY : src/compositor.cpp.i
-
-src/compositor.s: src/compositor.cpp.s
-
-.PHONY : src/compositor.s
-
-# target to generate assembly for a file
-src/compositor.cpp.s:
-	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/compositor.cpp.s
-.PHONY : src/compositor.cpp.s
-
 src/main.obj: src/main.cpp.obj
 
 .PHONY : src/main.obj
@@ -193,33 +166,6 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/opticsData.obj: src/opticsData.cpp.obj
-
-.PHONY : src/opticsData.obj
-
-# target to build an object file
-src/opticsData.cpp.obj:
-	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/opticsData.cpp.obj
-.PHONY : src/opticsData.cpp.obj
-
-src/opticsData.i: src/opticsData.cpp.i
-
-.PHONY : src/opticsData.i
-
-# target to preprocess a source file
-src/opticsData.cpp.i:
-	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/opticsData.cpp.i
-.PHONY : src/opticsData.cpp.i
-
-src/opticsData.s: src/opticsData.cpp.s
-
-.PHONY : src/opticsData.s
-
-# target to generate assembly for a file
-src/opticsData.cpp.s:
-	$(MAKE) -f CMakeFiles/volume_rendering.dir/build.make CMakeFiles/volume_rendering.dir/src/opticsData.cpp.s
-.PHONY : src/opticsData.cpp.s
 
 src/volume.obj: src/volume.cpp.obj
 
@@ -257,15 +203,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... volume_rendering"
-	@echo "... src/compositor.obj"
-	@echo "... src/compositor.i"
-	@echo "... src/compositor.s"
 	@echo "... src/main.obj"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/opticsData.obj"
-	@echo "... src/opticsData.i"
-	@echo "... src/opticsData.s"
 	@echo "... src/volume.obj"
 	@echo "... src/volume.i"
 	@echo "... src/volume.s"
